@@ -1,0 +1,27 @@
+Variables
+=========
+
+Purpose
+-------
+Used to store data in the computer's memory. A variable acts as a label
+referencing a specific memory location.
+
+Primitive Types
+---------------
+Python supports basic data types including:
+    Integers:   Whole numbers (e.g., 1000).
+    Floats:     Numbers with decimal points (e.g., 4.99).
+    Booleans:   Logical values representing True or False. Note that Python is
+                case-sensitive, so these must be capitalized.
+    Strings:    Sequences of text characters.
+
+Variable Names
+--------------
+Best Practices for Readability:
+    Descriptive: Use meaningful names (e.g., student_count instead of c1) to
+                make code maintainable.
+    Lowercase:  Use all lowercase letters for naming variables.
+    Underscores: Use underscores to separate words since spaces are not
+                permitted.
+    Formatting: Maintain consistent spacing around the assignment operator
+                (=) for clean code compliant with PEP 8 standards.

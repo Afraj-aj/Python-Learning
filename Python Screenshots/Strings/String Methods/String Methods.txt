@@ -1,0 +1,33 @@
+String Methods
+=============
+
+Object-Oriented Basics
+----------------------
+In Python, strings are objects, meaning they have associated functions called
+methods that are accessed using the dot notation (e.g., course.upper()).
+
+Case Manipulation Methods
+-------------------------
+    upper():    Converts a string to all uppercase characters.
+    lower():    Converts a string to all lowercase characters.
+    title():    Capitalizes the first letter of every word in the string.
+
+Whitespace Management
+---------------------
+    strip():    Trims whitespace from both the beginning and end of a string.
+    lstrip():   Removes whitespace specifically from the left (beginning) side.
+    rstrip():   Removes whitespace specifically from the right (end) side.
+
+Searching and Replacing
+-----------------------
+    find(sub):  Returns the index of the first occurrence of a substring;
+                returns -1 if the string is not found.
+    replace(old, new): Replaces occurrences of a specific character or sequence
+                with a new one.
+
+Membership Operators
+-------------------
+    in:         Checks for the existence of a character or sequence within a
+                string, returning a Boolean (True or False).
+    not in:     Checks if a character or sequence is absent from the string,
+                returning a Boolean.

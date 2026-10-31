@@ -1,0 +1,12 @@
+Formatted Strings
+=================
+
+Usage
+-----
+Prefixed with an f or F, these allow you to inject variables or expressions
+directly into a string.
+
+Syntax
+------
+Use curly braces {} to contain variables or valid Python expressions that are
+evaluated at runtime.

@@ -1,0 +1,23 @@
+Strings
+=======
+
+Definition
+----------
+Text data surrounded by quotes (single or double).
+
+Length
+------
+Use the built-in len() function to get the number of characters.
+
+Indexing
+--------
+Use square brackets [] to access characters. Strings are zero-indexed.
+
+Negative Indexing
+-----------------
+Use -1 to access the last character.
+
+Slicing
+-------
+Extract portions of a string using [start:end] syntax. The character at the
+end index is excluded from the result.
