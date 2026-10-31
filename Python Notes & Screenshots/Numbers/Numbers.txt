@@ -1,0 +1,45 @@
+Numbers
+=======
+
+Numeric Types
+-------------
+Python supports three main numeric types:
+    Integers:       Whole numbers (e.g., 10).
+    Floats:         Numbers with a decimal point (e.g., 4.99).
+    Complex Numbers: Numbers in the format a + bj, where b is the imaginary
+                    component.
+
+Arithmetic Operators
+--------------------
+Standard mathematical operations include:
+    Addition:       +
+    Subtraction:    -
+    Multiplication: *
+    Division:       /
+
+Division Variants
+-----------------
+    /:  Using the forward slash results in a float.
+    //: Using double slashes performs integer division.
+
+Additional Operators
+--------------------
+    %:  Modulus (remainder).
+    **: Exponentiation (powers).
+
+Augmented Assignment
+--------------------
+Shortened syntax for updating variables, such as x += 3, which is
+equivalent to x = x + 3.
+
+Working With Numbers
+--------------------
+Built-in Functions:
+    round():    Rounds a number to the nearest integer.
+    abs():      Returns the absolute (positive) value of a number.
+
+Math Module
+-----------
+For more complex calculations, import the math module.
+Methods: Access advanced functions using dot notation (e.g., math.ceil())
+after importing the module.
