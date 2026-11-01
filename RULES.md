@@ -42,7 +42,8 @@ Python Notes & Screenshots/
 ├── Numbers/
 ├── Strings/
 ├── Type Conversion/
-└── Conditionals/
+├── Conditionals/
+└── Loops/
 ```
 
 ---
@@ -56,6 +57,7 @@ Existing topic folders:
 - `Strings/`
 - `Type Conversion/`
 - `Conditionals/`
+- `Loops/`
 
 Sub-topics get nested folders under their parent topic:
 - `Strings/String Methods/`
@@ -173,6 +175,20 @@ Python Notes & Screenshots/
 │   │   └── Short-circuit Evaluations.txt
 │   └── Chaining Comparison Operators/
 │       └── Chaining Comparison Operators.txt
+├── Loops/
+│   ├── Loops.txt
+│   ├── For Loops/
+│   │   └── For Loops.txt
+│   ├── For..Else/
+│   │   └── For..Else.txt
+│   ├── Nested Loops/
+│   │   └── Nested Loops.txt
+│   ├── Iterables/
+│   │   └── Iterables.txt
+│   ├── While Loops/
+│   │   └── While Loops.txt
+│   └── Infinite Loops/
+│       └── Infinite Loops.txt
 └── Strings/
     ├── Strings.txt
     ├── String Methods/

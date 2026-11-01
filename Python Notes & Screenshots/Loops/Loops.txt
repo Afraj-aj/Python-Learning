@@ -1,0 +1,20 @@
+Loops
+=====
+
+Overview
+--------
+Loops are used to repeat code execution. This topic covers for loops,
+while loops, and related concepts.
+
+Topics in this folder:
+- For Loops
+- For..Else
+- Nested Loops
+- Iterables
+- While Loops
+- Infinite Loops
+
+Example:
+    for i in range(5):
+        print(i)
+    # Output: 0 1 2 3 4

@@ -1,0 +1,41 @@
+Infinite Loops
+==============
+
+Definition
+----------
+A loop where the condition is always True, causing it to run indefinitely.
+
+Exit Strategy
+------------
+Requires an explicit break statement inside the loop to avoid program crashes
+or memory exhaustion.
+
+Risk
+----
+If no exit condition exists, the program will consume resources until it is
+manually stopped or crashes.
+
+Example:
+    # Infinite loop with break
+    count = 0
+    while True:
+        print(f"Count: {count}")
+        count += 1
+        if count >= 5:
+            print("Breaking out of loop")
+            break
+    # Output: Count: 0, 1, 2, 3, 4, Breaking out of loop
+
+    # User input to control exit
+    while True:
+        command = input("Type 'stop' to exit: ")
+        if command.lower() == "stop":
+            print("Exiting...")
+            break
+        else:
+            print("Keep going!")
+
+    # WARNING: This will run forever without a break
+    # while True:
+    #     print("This never ends!")
+    # Do NOT run this code

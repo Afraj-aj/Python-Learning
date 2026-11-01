@@ -1,0 +1,41 @@
+Iterables
+=========
+
+Concept
+-------
+Any object that can return its elements one by one, allowing it to be used in
+a for loop.
+
+Examples
+--------
+    Range objects: Created by the range() function.
+    Strings: The loop iterates over each individual character.
+    Lists: The loop iterates over each item in the list.
+
+Customization
+-------------
+Python allows for the creation of custom objects that are iterable, enabling
+advanced logic like `for item in shopping_cart`.
+
+Example:
+    # Range object
+    for i in range(3):
+        print(i)
+    # Output: 0, 1, 2
+
+    # String - iterates over each character
+    for char in "hello":
+        print(char)
+    # Output: h, e, l, l, o
+
+    # List - iterates over each item
+    shopping_cart = ["apple", "banana", "milk"]
+    for item in shopping_cart:
+        print(item)
+    # Output: apple, banana, milk
+
+    # Tuple
+    coordinates = (10, 20)
+    for coord in coordinates:
+        print(coord)
+    # Output: 10, 20

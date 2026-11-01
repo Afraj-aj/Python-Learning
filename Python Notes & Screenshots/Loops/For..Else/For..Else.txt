@@ -1,0 +1,41 @@
+For..Else
+=========
+
+Break Statement
+---------------
+Used to exit a loop prematurely when a specific condition is met.
+
+Else Clause
+-----------
+A block of code that executes only if the loop completes fully without
+encountering a break statement.
+
+Use Case
+--------
+Often used for search operations to determine if an item was found or if the
+iteration finished without success.
+
+Example:
+    # Search for a number
+    numbers = [1, 2, 3, 4, 5]
+    target = 3
+
+    for num in numbers:
+        if num == target:
+            print(f"Found {target}!")
+            break
+    else:
+        print(f"{target} not found in the list")
+
+    # Output: Found 3!
+
+    # Example without break
+    target = 10
+    for num in numbers:
+        if num == target:
+            print(f"Found {target}!")
+            break
+    else:
+        print(f"{target} not found in the list")
+
+    # Output: 10 not found in the list

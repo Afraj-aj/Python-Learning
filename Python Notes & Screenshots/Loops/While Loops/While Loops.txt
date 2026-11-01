@@ -1,0 +1,44 @@
+While Loops
+===========
+
+Definition
+----------
+A loop that continues to execute as long as a specified condition remains True.
+
+Mechanism
+---------
+Unlike for loops which iterate over a known collection, while loops rely on
+boolean evaluation.
+
+Common Pattern
+--------------
+Used to continuously collect user input until a specific keyword (e.g., "quit")
+is entered.
+
+Best Practice
+-------------
+Use methods like .lower() on strings before comparison to ensure the condition
+is case-insensitive.
+
+Example:
+    # Simple counter
+    count = 0
+    while count < 5:
+        print(count)
+        count += 1
+    # Output: 0, 1, 2, 3, 4
+
+    # User input loop
+    while True:
+        user_input = input("Enter a command (quit to exit): ")
+        if user_input.lower() == "quit":
+            print("Goodbye!")
+            break
+        print(f"You entered: {user_input}")
+
+    # Conditional loop
+    attempts = 0
+    max_attempts = 3
+    while attempts < max_attempts:
+        print(f"Attempt {attempts + 1}")
+        attempts += 1

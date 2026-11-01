@@ -1,0 +1,29 @@
+Nested Loops
+============
+
+Definition
+----------
+A loop placed inside another loop (outer loop and inner loop).
+
+Execution
+---------
+For every single iteration of the outer loop, the entire inner loop executes
+completely.
+
+Applications
+------------
+Highly effective for working with multidimensional structures, such as
+printing coordinates or processing matrix-like data.
+
+Example:
+    # Print multiplication table
+    for i in range(1, 4):
+        for j in range(1, 4):
+            print(f"{i} x {j} = {i * j}")
+        print()  # Blank line between rows
+
+    # Print grid coordinates
+    for row in range(3):
+        for col in range(3):
+            print(f"({row}, {col})", end=" ")
+        print()  # New line after each row
