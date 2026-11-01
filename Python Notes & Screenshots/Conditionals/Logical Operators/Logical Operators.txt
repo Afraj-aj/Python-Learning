@@ -1,0 +1,44 @@
+Logical Operators
+=================
+
+Purpose
+-------
+Used to combine multiple Boolean expressions to model complex decision logic.
+
+Operators
+--------
+    and: Returns True only if both conditions are true.
+    or:  Returns True if at least one condition is true.
+    not: Inverses the Boolean value (e.g., True becomes False).
+
+Example:
+    age = 25
+    has_id = True
+
+    # AND operator
+    if age >= 18 and has_id:
+        print("Access granted")   # Both conditions are True
+
+    # OR operator
+    is_admin = False
+    if is_admin or has_id:
+        print("Access granted")    # At least one condition is True
+
+    # NOT operator
+    is_banned = False
+    if not is_banned:
+        print("You are not banned")
+
+Best Practice
+-------------
+Avoid comparing Booleans directly with True or False (e.g., use
+`if condition:` instead of `if condition == True:`).
+
+Example:
+    # Good
+    if is_valid:
+        print("Valid")
+
+    # Avoid
+    if is_valid == True:
+        print("Valid")

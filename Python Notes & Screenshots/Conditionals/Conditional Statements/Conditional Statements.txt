@@ -1,0 +1,32 @@
+Conditional Statements
+======================
+
+Purpose
+-------
+Allows the program to make decisions by executing specific code blocks based
+on Boolean conditions.
+
+Structure
+---------
+Uses if, elif (else if), and else statements.
+
+Syntax Rules
+------------
+Conditions must result in a Boolean.
+Use a colon (:) after the condition.
+Indentation is mandatory and must be consistent to define the code blocks
+belonging to each statement.
+
+Example:
+    temperature = 25
+
+    if temperature > 30:
+        print("It's hot outside")
+    elif temperature > 20:
+        print("It's warm outside")
+    elif temperature > 10:
+        print("It's mild outside")
+    else:
+        print("It's cold outside")
+
+    # Output: It's warm outside

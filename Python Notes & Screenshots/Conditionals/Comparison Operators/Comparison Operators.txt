@@ -1,0 +1,37 @@
+Comparison Operators
+===================
+
+Function
+--------
+Used to compare values, resulting in a Boolean (True or False).
+
+Operators
+--------
+    >:   Greater than
+    >=:  Greater than or equal to
+    <:   Less than
+    <=:  Less than or equal to
+    ==:  Equality
+    !=:  Not equal
+
+Example:
+    a = 10
+    b = 5
+
+    a > b    # True
+    a >= b   # True
+    a < b    # False
+    a <= b   # False
+    a == b   # False
+    a != b   # True
+
+String Comparison
+-----------------
+Comparison is possible with strings; character comparison is based on their
+numeric representations (e.g., ASCII values), and comparisons are
+case-sensitive.
+
+Example:
+    "apple" < "banana"   # True ('a' comes before 'b' in ASCII)
+    "Apple" < "apple"    # True (uppercase 'A' has lower ASCII value than 'a')
+    "hello" == "Hello"   # False (case-sensitive)

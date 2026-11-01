@@ -1,0 +1,34 @@
+Short-circuit Evaluations
+=========================
+
+Concept
+-------
+An optimization where the evaluation of an expression stops as soon as the
+result is determined.
+
+and operator
+------------
+Stops if the first argument is False because the entire expression is
+guaranteed to be False.
+
+or operator
+-----------
+Stops if the first argument is True because the entire expression is
+guaranteed to be True.
+
+Example:
+    # AND short-circuit
+    False and print("Hello")   # print() is never called
+    True and print("Hello")    # print() is called
+
+    # OR short-circuit
+    True or print("Hello")     # print() is never called
+    False or print("Hello")    # print() is called
+
+    # Practical example
+    username = ""
+    if username and username.startswith("admin"):
+        print("Admin user")
+
+    # If username is empty (falsy), the second part is not evaluated
+    # This prevents potential errors

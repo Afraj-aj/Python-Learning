@@ -41,7 +41,8 @@ Python Notes & Screenshots/
 ├── Variables/
 ├── Numbers/
 ├── Strings/
-└── Type Conversion/
+├── Type Conversion/
+└── Conditionals/
 ```
 
 ---
@@ -54,6 +55,7 @@ Existing topic folders:
 - `Numbers/`
 - `Strings/`
 - `Type Conversion/`
+- `Conditionals/`
 
 Sub-topics get nested folders under their parent topic:
 - `Strings/String Methods/`
@@ -157,6 +159,20 @@ Python Notes & Screenshots/
 │   └── Numbers.txt
 ├── Type Conversion/
 │   └── Type Conversion.txt
+├── Conditionals/
+│   ├── Conditionals.txt
+│   ├── Comparison Operators/
+│   │   └── Comparison Operators.txt
+│   ├── Conditional Statements/
+│   │   └── Conditional Statements.txt
+│   ├── Ternary Operator/
+│   │   └── Ternary Operator.txt
+│   ├── Logical Operators/
+│   │   └── Logical Operators.txt
+│   ├── Short-circuit Evaluations/
+│   │   └── Short-circuit Evaluations.txt
+│   └── Chaining Comparison Operators/
+│       └── Chaining Comparison Operators.txt
 └── Strings/
     ├── Strings.txt
     ├── String Methods/

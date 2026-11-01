@@ -1,0 +1,24 @@
+Conditionals
+============
+
+Overview
+--------
+Conditionals allow programs to make decisions by executing different code
+blocks based on Boolean conditions. This topic covers comparison operators,
+conditional statements, logical operators, and related concepts.
+
+Topics in this folder:
+- Comparison Operators
+- Conditional Statements
+- Ternary Operator
+- Logical Operators
+- Short-circuit Evaluations
+- Chaining Comparison Operators
+
+Example:
+    age = 25
+
+    if age >= 18:
+        print("Adult")
+    else:
+        print("Minor")

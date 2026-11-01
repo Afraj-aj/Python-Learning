@@ -1,0 +1,33 @@
+Ternary Operator
+================
+
+Purpose
+-------
+Provides a concise, one-line syntax for simple conditional assignments.
+
+Syntax
+------
+    value_if_true if condition else value_if_false
+
+Benefit
+-------
+Reduces the number of lines needed for simple if/else logic when assigning
+values to a variable.
+
+Example:
+    # Without ternary operator
+    age = 20
+    if age >= 18:
+        status = "Adult"
+    else:
+        status = "Minor"
+
+    # With ternary operator
+    status = "Adult" if age >= 18 else "Minor"
+
+    # More examples
+    num = 7
+    result = "Even" if num % 2 == 0 else "Odd"
+
+    temperature = 30
+    message = "Hot" if temperature > 25 else "Pleasant"

@@ -1,0 +1,40 @@
+Chaining Comparison Operators
+=============================
+
+Purpose
+-------
+A technique to write cleaner, more mathematical conditional expressions.
+
+Syntax
+------
+Instead of `age >= 18 and age < 65`, you can write `18 <= age < 65`.
+
+Benefit
+-------
+Makes the code more readable and closely mirrors standard mathematical
+notation.
+
+Example:
+    age = 30
+
+    # Without chaining
+    if age >= 18 and age < 65:
+        print("Working age")
+
+    # With chaining
+    if 18 <= age < 65:
+        print("Working age")
+
+    # More examples
+    score = 85
+    if 70 <= score < 90:
+        print("Grade B")
+
+    num = 15
+    if 0 < num < 100:
+        print("Number is between 0 and 100")
+
+    # Works with strings too
+    name = "Alice"
+    if "A" <= name < "M":
+        print("Name starts with A-L")
