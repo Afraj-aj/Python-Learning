@@ -9,6 +9,11 @@ Python supports three main numeric types:
     Complex Numbers: Numbers in the format a + bj, where b is the imaginary
                     component.
 
+Example:
+    age = 30            # Integer
+    height = 5.9        # Float
+    complex_num = 3 + 2j  # Complex
+
 Arithmetic Operators
 --------------------
 Standard mathematical operations include:
@@ -17,20 +22,43 @@ Standard mathematical operations include:
     Multiplication: *
     Division:       /
 
+Example:
+    a = 10
+    b = 3
+
+    a + b   # 13
+    a - b   # 7
+    a * b   # 30
+    a / b   # 3.333...
+
 Division Variants
 -----------------
     /:  Using the forward slash results in a float.
     //: Using double slashes performs integer division.
+
+Example:
+    10 / 3    # 3.333... (float)
+    10 // 3   # 3 (integer division)
 
 Additional Operators
 --------------------
     %:  Modulus (remainder).
     **: Exponentiation (powers).
 
+Example:
+    10 % 3   # 1 (remainder)
+    2 ** 3   # 8 (2 cubed)
+
 Augmented Assignment
 --------------------
 Shortened syntax for updating variables, such as x += 3, which is
 equivalent to x = x + 3.
+
+Example:
+    x = 5
+    x += 3   # Same as x = x + 3, now x = 8
+    x -= 2   # Same as x = x - 2, now x = 6
+    x *= 4   # Same as x = x * 4, now x = 24
 
 Working With Numbers
 --------------------
@@ -38,8 +66,22 @@ Built-in Functions:
     round():    Rounds a number to the nearest integer.
     abs():      Returns the absolute (positive) value of a number.
 
+Example:
+    round(3.7)     # 4
+    round(3.2)     # 3
+    abs(-5)        # 5
+    abs(5)         # 5
+
 Math Module
 -----------
 For more complex calculations, import the math module.
 Methods: Access advanced functions using dot notation (e.g., math.ceil())
 after importing the module.
+
+Example:
+    import math
+
+    math.ceil(3.2)     # 4 (round up)
+    math.floor(3.8)    # 3 (round down)
+    math.sqrt(16)      # 4.0
+    math.pi            # 3.14159...

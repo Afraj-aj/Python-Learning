@@ -6,12 +6,23 @@ Necessity
 Conversion is required when data types mismatch, such as attempting to
 concatenate a string with a number.
 
+Example (will cause error):
+    age = 25
+    print("I am " + age)   # TypeError: can only concatenate str to str
+
 Built-in Conversion Functions
 -----------------------------
     int():  Converts to an integer.
     float(): Converts to a floating-point number.
     bool(): Converts to a boolean.
     str():  Converts to a string.
+
+Example:
+    num_str = "25"
+    age = int(num_str)        # 25 (integer)
+    pi = float("3.14")        # 3.14 (float)
+    flag = bool(1)            # True
+    text = str(100)           # "100" (string)
 
 Truthiness and Falsiness
 ------------------------
@@ -22,3 +33,15 @@ including:
     The None object (representing the absence of a value)
 
 All other values are considered truthy.
+
+Example:
+    falsy_values = ["", 0, None, [], {}]
+    truthy_values = ["hello", 42, 3.14, [1, 2], {"a": 1}]
+
+    if falsy_values[0]:    # Empty string is falsy
+        print("won't print")
+    else:
+        print("falsy!")   # This will print
+
+    if truthy_values[0]:   # Non-empty string is truthy
+        print("truthy!")  # This will print

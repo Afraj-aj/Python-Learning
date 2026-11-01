@@ -5,19 +5,47 @@ Definition
 ----------
 Text data surrounded by quotes (single or double).
 
+Example:
+    name = "Alice"
+    greeting = 'Hello'
+    both = "It's a beautiful day"
+
 Length
 ------
 Use the built-in len() function to get the number of characters.
+
+Example:
+    message = "Python"
+    len(message)   # 6
 
 Indexing
 --------
 Use square brackets [] to access characters. Strings are zero-indexed.
 
+Example:
+    word = "Hello"
+    word[0]   # 'H'
+    word[1]   # 'e'
+    word[4]   # 'o'
+
 Negative Indexing
 -----------------
 Use -1 to access the last character.
+
+Example:
+    word = "Hello"
+    word[-1]   # 'o'
+    word[-2]   # 'l'
+    word[-5]   # 'H'
 
 Slicing
 -------
 Extract portions of a string using [start:end] syntax. The character at the
 end index is excluded from the result.
+
+Example:
+    word = "Python"
+    word[0:3]    # 'Pyt' (from index 0 to 2)
+    word[2:6]    # 'tho' (from index 2 to 5)
+    word[:3]     # 'Pyt' (from start to index 2)
+    word[3:]     # 'hon' (from index 3 to end)

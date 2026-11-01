@@ -12,3 +12,24 @@ Common Sequences
     \':    Adds a single quote.
     \\:    Adds a literal backslash.
     \n:    Adds a new line.
+
+Example:
+    # Double quote inside string
+    quote = "She said, \"Hello!\""
+    print(quote)   # She said, "Hello!"
+
+    # Single quote inside string
+    apostrophe = 'It\'s a nice day'
+    print(apostrophe)   # It's a nice day
+
+    # Literal backslash
+    path = "C:\\Users\\Afraj"
+    print(path)   # C:\Users\Afraj
+
+    # New line
+    message = "Line 1\nLine 2\nLine 3"
+    print(message)
+    # Output:
+    # Line 1
+    # Line 2
+    # Line 3

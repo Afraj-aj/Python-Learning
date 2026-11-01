@@ -6,6 +6,12 @@ Purpose
 Used to store data in the computer's memory. A variable acts as a label
 referencing a specific memory location.
 
+Example:
+    age = 25
+    name = "Alice"
+    height = 5.9
+    is_student = True
+
 Primitive Types
 ---------------
 Python supports basic data types including:
@@ -14,6 +20,12 @@ Python supports basic data types including:
     Booleans:   Logical values representing True or False. Note that Python is
                 case-sensitive, so these must be capitalized.
     Strings:    Sequences of text characters.
+
+Example:
+    count = 1000          # Integer
+    price = 4.99          # Float
+    is_valid = True       # Boolean
+    message = "Hello"     # String
 
 Variable Names
 --------------
@@ -25,3 +37,14 @@ Best Practices for Readability:
                 permitted.
     Formatting: Maintain consistent spacing around the assignment operator
                 (=) for clean code compliant with PEP 8 standards.
+
+Example:
+    # Good
+    student_count = 25
+    total_price = 19.99
+    is_enrolled = True
+
+    # Avoid
+    c1 = 25
+    TP = 19.99
+    IE = True
