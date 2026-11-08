@@ -1,0 +1,35 @@
+Keyword Arguments
+=================
+
+Usage
+-----
+When calling a function, use the parameter name followed by an equals sign
+(e.g., increment(2, by=1)).
+
+Advantage
+---------
+Makes the code more readable and clarifies the intent of the arguments,
+especially when a function has multiple inputs.
+
+Example:
+    def increment(number, by):
+        return number + by
+
+    # Positional arguments
+    result1 = increment(5, 2)
+    print(result1)  # 7
+
+    # Keyword arguments
+    result2 = increment(5, by=2)
+    print(result2)  # 7
+
+    # Mixed - keyword must come after positional
+    result3 = increment(5, by=3)
+    print(result3)  # 8
+
+    # Clear intent with keyword arguments
+    def create_profile(name, age, city):
+        print(f"{name}, {age}, from {city}")
+
+    create_profile("Alice", 30, "New York")  # Positional
+    create_profile(name="Alice", age=30, city="New York")  # All keyword

@@ -1,0 +1,31 @@
+Arguments
+=========
+
+Parameters
+----------
+The input variables defined in the function's parentheses (e.g.,
+first_name, last_name).
+
+Arguments
+---------
+The actual values passed to the function when it is called (e.g., "Mosh",
+"Hamedani").
+
+Rules
+-----
+Parameters are required by default.
+Excluding a required argument will raise a TypeError or a linting error.
+
+Example:
+    def print_name(first_name, last_name):
+        print(f"First name: {first_name}")
+        print(f"Last name: {last_name}")
+
+    # Passing arguments in order
+    print_name("Mosh", "Hamedani")
+    # Output:
+    # First name: Mosh
+    # Last name: Hamedani
+
+    # This will raise a TypeError - missing required argument
+    # print_name("Mosh")  # TypeError: print_name() missing 1 required positional argument

@@ -1,0 +1,37 @@
+xargs
+=====
+
+Purpose
+-------
+Allows a function to accept a variable number of arguments.
+
+Implementation
+--------------
+Use an asterisk `*` before the parameter name (e.g., `*numbers`).
+
+Mechanism
+---------
+Python packs these arguments into a tuple (an iterable collection).
+
+Usage
+-----
+You can iterate over this tuple (using a for loop) to perform calculations
+like finding a sum or product of an arbitrary number of inputs.
+
+Example:
+    def multiply(*numbers):
+        result = 1
+        for num in numbers:
+            result *= num
+        return result
+
+    print(multiply(2, 3, 4))    # 24
+    print(multiply(2, 3, 4, 5)) # 120
+    print(multiply(5))          # 5
+
+    # Another example - sum of arbitrary numbers
+    def total(*numbers):
+        return sum(numbers)
+
+    print(total(1, 2, 3))       # 6
+    print(total(10, 20, 30, 40)) # 100

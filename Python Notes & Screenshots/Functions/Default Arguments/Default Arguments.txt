@@ -1,0 +1,37 @@
+Default Arguments
+=================
+
+Purpose
+-------
+Makes parameters optional by providing a default value in the definition
+(e.g., `def increment(number, by=1)`).
+
+Behavior
+--------
+If no argument is provided, the function uses the default value. If provided,
+the default is overridden.
+
+Rule
+----
+All optional parameters must come after any required parameters.
+
+Example:
+    # Default value for 'by'
+    def increment(number, by=1):
+        return number + by
+
+    # Uses default value (by=1)
+    result1 = increment(5)
+    print(result1)  # 6
+
+    # Overrides default value
+    result2 = increment(5, 3)
+    print(result2)  # 8
+
+    # Keyword argument to override default
+    result3 = increment(5, by=5)
+    print(result3)  # 10
+
+    # Rule violation - this will raise a SyntaxError
+    # def bad_function(a=1, b):  # Non-default argument follows default argument
+    #     pass

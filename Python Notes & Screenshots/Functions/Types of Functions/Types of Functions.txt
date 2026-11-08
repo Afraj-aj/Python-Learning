@@ -1,0 +1,36 @@
+Types of Functions
+==================
+
+Task-Oriented Functions
+-----------------------
+Designed to perform an action (like print()). They return None by default
+unless specified otherwise.
+
+Calculation-Oriented Functions
+------------------------------
+Designed to calculate and return a value using the return statement.
+
+Benefit
+-------
+These are more reusable because the result can be stored in a variable,
+written to a file, or processed further.
+
+Example:
+    # Task-oriented function
+    def greet(name):
+        print(f"Hello, {name}!")
+
+    result = greet("Alice")  # Returns None
+    print(result)  # None
+
+    # Calculation-oriented function
+    def add(a, b):
+        return a + b
+
+    total = add(5, 3)  # Returns 8
+    print(total)  # 8
+
+    # Reusability
+    numbers = [10, 20, 30]
+    doubled = [add(x, x) for x in numbers]
+    print(doubled)  # [20, 40, 60]

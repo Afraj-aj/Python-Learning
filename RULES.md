@@ -43,7 +43,8 @@ Python Notes & Screenshots/
 ├── Strings/
 ├── Type Conversion/
 ├── Conditionals/
-└── Loops/
+├── Loops/
+└── Functions/
 ```
 
 ---
@@ -58,6 +59,7 @@ Existing topic folders:
 - `Type Conversion/`
 - `Conditionals/`
 - `Loops/`
+- `Functions/`
 
 Sub-topics get nested folders under their parent topic:
 - `Strings/String Methods/`
@@ -189,6 +191,20 @@ Python Notes & Screenshots/
 │   │   └── While Loops.txt
 │   └── Infinite Loops/
 │       └── Infinite Loops.txt
+├── Functions/
+│   ├── Functions.txt
+│   ├── Defining Functions/
+│   │   └── Defining Functions.txt
+│   ├── Arguments/
+│   │   └── Arguments.txt
+│   ├── Types of Functions/
+│   │   └── Types of Functions.txt
+│   ├── Keyword Arguments/
+│   │   └── Keyword Arguments.txt
+│   ├── Default Arguments/
+│   │   └── Default Arguments.txt
+│   └── xargs/
+│       └── xargs.txt
 └── Strings/
     ├── Strings.txt
     ├── String Methods/

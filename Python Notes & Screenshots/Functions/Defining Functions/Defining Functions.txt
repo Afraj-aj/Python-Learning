@@ -1,0 +1,30 @@
+Defining Functions
+=================
+
+Purpose
+-------
+Used to break large programs into smaller, maintainable, and reusable chunks
+of code.
+
+Syntax
+------
+Starts with the `def` keyword.
+Followed by a descriptive name (using lowercase letters and underscores).
+Ends with parentheses `()` and a colon `:`.
+The code block belonging to the function must be indented.
+
+Best Practices
+--------------
+PEP 8 recommends adding two line breaks after the function definition.
+
+Example:
+    def greet():
+        print("Hello, world!")
+
+    def add_numbers(a, b):
+        result = a + b
+        print(result)
+
+    # Call the functions
+    greet()          # Hello, world!
+    add_numbers(3, 5)  # 8
