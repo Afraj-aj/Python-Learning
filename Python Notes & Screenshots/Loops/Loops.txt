@@ -13,6 +13,7 @@ Topics in this folder:
 - Iterables
 - While Loops
 - Infinite Loops
+- The range() Function
 
 Example:
     for i in range(5):

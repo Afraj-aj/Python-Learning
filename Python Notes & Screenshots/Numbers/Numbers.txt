@@ -20,7 +20,7 @@ Standard mathematical operations include:
     Addition:       +
     Subtraction:    -
     Multiplication: *
-    Division:       /
+    Division:       / (float result)
 
 Example:
     a = 10
@@ -29,7 +29,7 @@ Example:
     a + b   # 13
     a - b   # 7
     a * b   # 30
-    a / b   # 3.333...
+    a / b   # 3.333... (float result)
 
 Division Variants
 -----------------
@@ -59,6 +59,13 @@ Example:
     x += 3   # Same as x = x + 3, now x = 8
     x -= 2   # Same as x = x - 2, now x = 6
     x *= 4   # Same as x = x * 4, now x = 24
+
+Operator Precedence
+-------------------
+Follows math rules: multiplication and division happen before addition and
+subtraction. Use parentheses to override precedence.
+See: `Numbers/Operator Precedence/Operator Precedence.txt` for details and
+examples.
 
 Working With Numbers
 --------------------

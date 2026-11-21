@@ -3,8 +3,9 @@ For Loops
 
 Purpose
 -------
-Used for repeating tasks a specific number of times or iterating over a
-collection.
+Best way to iterate through items in a list or sequence.
+Cleaner and shorter than a while loop for simple iteration.
+Also used for repeating tasks a specific number of times.
 
 Range Function
 --------------
@@ -12,6 +13,8 @@ Generates a sequence of numbers.
     range(x):         Generates numbers from 0 up to, but not including, x.
     range(start, end): Starts at start and ends before end.
     range(start, end, step): Increments by the step value.
+
+For detailed range examples, see: `Loops/The range() Function/The range() Function.txt`
 
 Usage
 -----

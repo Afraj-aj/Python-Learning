@@ -1,0 +1,26 @@
+Receiving Input
+===============
+
+Purpose
+-------
+Used to read data from the terminal (user input) while a program is running.
+
+Syntax
+------
+Use the input() function, optionally with a prompt message.
+
+Example:
+    name = input("Enter your name: ")
+    print(f"Hello, {name}!")
+
+Return Type
+-----------
+The input() function always returns a string, even if the user types a number.
+
+Example:
+    age = input("Enter your age: ")
+    print(type(age))   # <class 'str'>
+
+    # To use as a number, convert the input
+    age = int(input("Enter your age: "))
+    print(age + 1)     # Works after conversion

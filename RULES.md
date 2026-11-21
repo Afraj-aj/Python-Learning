@@ -39,11 +39,14 @@ Subfolders are created for each major topic. Each topic gets its own folder.
 ```
 Python Notes & Screenshots/
 ├── Variables/
+├── Receiving Input/
 ├── Numbers/
 ├── Strings/
 ├── Type Conversion/
 ├── Conditionals/
 ├── Loops/
+├── Lists/
+├── Tuples/
 └── Functions/
 ```
 
@@ -54,17 +57,24 @@ Each major topic gets a dedicated folder under `Python Notes & Screenshots/`.
 
 Existing topic folders:
 - `Variables/`
+- `Receiving Input/`
 - `Numbers/`
 - `Strings/`
 - `Type Conversion/`
 - `Conditionals/`
 - `Loops/`
+- `Lists/`
+- `Tuples/`
 - `Functions/`
 
 Sub-topics get nested folders under their parent topic:
+- `Numbers/Operator Precedence/`
 - `Strings/String Methods/`
 - `Strings/Escape Sequences/`
 - `Strings/Formatted Strings/`
+- `Conditionals/Exercise/`
+- `Lists/List Methods/`
+- `Loops/The range() Function/`
 
 **Example of nested structure:**
 ```
@@ -159,8 +169,12 @@ When you receive notes for a new topic:
 Python Notes & Screenshots/
 ├── Variables/
 │   └── Variables.txt
+├── Receiving Input/
+│   └── Receiving Input.txt
 ├── Numbers/
-│   └── Numbers.txt
+│   ├── Numbers.txt
+│   └── Operator Precedence/
+│       └── Operator Precedence.txt
 ├── Type Conversion/
 │   └── Type Conversion.txt
 ├── Conditionals/
@@ -189,8 +203,16 @@ Python Notes & Screenshots/
 │   │   └── Iterables.txt
 │   ├── While Loops/
 │   │   └── While Loops.txt
-│   └── Infinite Loops/
-│       └── Infinite Loops.txt
+│   ├── Infinite Loops/
+│   │   └── Infinite Loops.txt
+│   └── The range() Function/
+│       └── The range() Function.txt
+├── Lists/
+│   ├── Lists.txt
+│   └── List Methods/
+│       └── List Methods.txt
+├── Tuples/
+│   └── Tuples.txt
 ├── Functions/
 │   ├── Functions.txt
 │   ├── Defining Functions/

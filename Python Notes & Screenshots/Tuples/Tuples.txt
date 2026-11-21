@@ -1,0 +1,40 @@
+Tuples
+======
+
+Definition
+----------
+Similar to lists but defined with parentheses ().
+Tuples are ordered and immutable (cannot change, add, or remove elements
+after creation).
+
+Use Case
+--------
+Use when data should stay constant throughout the program.
+
+Example:
+    coordinates = (10, 20)
+    colors = ("red", "green", "blue")
+    single = (42,)   # Single-element tuple needs a trailing comma
+
+Accessing Elements
+------------------
+Access elements the same way as lists, using indexes and slicing.
+
+Example:
+    point = (3, 7, 9)
+    point[0]     # 3
+    point[-1]    # 9
+    point[0:2]   # (3, 7)
+
+Immutability
+------------
+Attempting to modify a tuple raises a TypeError.
+
+Example:
+    point = (3, 7)
+    # point[0] = 5   # TypeError: 'tuple' object does not support item assignment
+
+    # Tuples support count and index methods
+    nums = (1, 2, 2, 3)
+    nums.count(2)    # 2
+    nums.index(3)    # 3

@@ -3,12 +3,16 @@ Strings
 
 Definition
 ----------
-Text data surrounded by quotes (single or double).
+Represent sequences of characters surrounded by quotes (single or double).
+Strings are immutable (cannot be changed once created).
 
 Example:
     name = "Alice"
     greeting = 'Hello'
     both = "It's a beautiful day"
+
+    # Strings are immutable
+    # name[0] = "a"  # TypeError: 'str' object does not support item assignment
 
 Length
 ------

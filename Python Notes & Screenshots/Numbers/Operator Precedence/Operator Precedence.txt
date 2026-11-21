@@ -1,0 +1,25 @@
+Operator Precedence
+===================
+
+Purpose
+-------
+Defines the order in which operations are evaluated in an expression.
+
+Rules
+-----
+Follows math rules: multiplication and division happen before addition and
+subtraction.
+Use parentheses to override precedence and force a specific order.
+
+Example:
+    result = 10 + 3 * 2
+    print(result)      # 16 (multiplication happens first)
+
+    result = (10 + 3) * 2
+    print(result)      # 26 (parentheses force addition first)
+
+    result = 10 / 2 + 3 * 4
+    print(result)      # 17.0 (10/2=5.0, 3*4=12, then 5.0+12=17.0)
+
+    result = 10 / (2 + 3) * 4
+    print(result)      # 8.0 (2+3=5, 10/5=2.0, 2.0*4=8.0)

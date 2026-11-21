@@ -4,11 +4,17 @@ While Loops
 Definition
 ----------
 A loop that continues to execute as long as a specified condition remains True.
+Used for repeating tasks until a condition is no longer True.
 
 Mechanism
 ---------
 Unlike for loops which iterate over a known collection, while loops rely on
 boolean evaluation.
+
+Exit Condition
+--------------
+Always include an exit condition (like incrementing a counter) to avoid
+infinite loops.
 
 Common Pattern
 --------------

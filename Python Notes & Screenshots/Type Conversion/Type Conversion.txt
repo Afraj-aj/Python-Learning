@@ -4,11 +4,18 @@ Type Conversion
 Necessity
 ---------
 Conversion is required when data types mismatch, such as attempting to
-concatenate a string with a number.
+concatenate a string with a number. It is also necessary when performing
+math on input strings (since input() always returns a string).
 
 Example (will cause error):
     age = 25
     print("I am " + age)   # TypeError: can only concatenate str to str
+
+Example with input:
+    age = input("Enter your age: ")   # "25" (string)
+    # age + 5  # TypeError
+    age = int(age)                    # Convert to integer first
+    print(age + 5)                    # 30
 
 Built-in Conversion Functions
 -----------------------------

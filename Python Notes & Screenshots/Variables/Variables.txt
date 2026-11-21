@@ -3,8 +3,13 @@ Variables
 
 Purpose
 -------
-Used to store data in the computer's memory. A variable acts as a label
-referencing a specific memory location.
+Used to store data in the computer's memory temporarily. A variable acts as a
+label referencing a specific memory location.
+
+Syntax
+------
+    name = value (e.g., age = 20).
+    Python is case-sensitive.
 
 Example:
     age = 25
