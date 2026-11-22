@@ -7,5 +7,53 @@ print(x + z)
 print(y + z)
 h = 3
 
-if (h > x):
-    print(f"{h} is greater than {x}")
+#if (h > x):
+#    print(f"{h} is greater than {x}")
+
+rows = 5
+for i in range(1, rows + 1):
+    spaces = " " * ( rows - i )
+    stars = "* " * i
+    print(spaces + stars)
+
+for j in range(1, rows + 1):
+    for k in range(rows - j):
+        print(" ", end="")
+    for l in range(2 * j - 1):
+        print("*", end="")
+    print()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+for a in range(1, rows + 1):
+    for b in range(rows - a):
+        print("", end="")
+    for c in range(a):
+        print("*", end=" ")
+    print()
+
+for a in range(1, rows + 1):
+    for b in range(rows - a):
+        print(" ", end="")
+    for c in range(a):
+        print("*", end=" ")
+    print()
+
+for a in range(1, rows + 1):
+    for b in range(rows - a):
+        print(" ", end=" ")
+    for c in range(a):
+        print("*", end=" ")
+    print()
