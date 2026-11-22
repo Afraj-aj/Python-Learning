@@ -1,11 +1,12 @@
 x = 1
 print(x)
 y = 2
-z = 9
+z = int(9)
 print(x + y)
 print(x + z)
 print(y + z)
-h = 3
+h = float(3.3)
+print(z-h)
 
 #if (h > x):
 #    print(f"{h} is greater than {x}")
