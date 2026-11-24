@@ -53,3 +53,4 @@ Example:
     word[2:6]    # 'thon' (from index 2 to 5)
     word[:3]     # 'Pyt' (from start to index 2)
     word[3:]     # 'hon' (from index 3 to end)
+    word[:]      # 'Python' (entire string)
