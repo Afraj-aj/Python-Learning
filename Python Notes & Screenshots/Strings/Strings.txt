@@ -50,6 +50,6 @@ end index is excluded from the result.
 Example:
     word = "Python"
     word[0:3]    # 'Pyt' (from index 0 to 2)
-    word[2:6]    # 'tho' (from index 2 to 5)
+    word[2:6]    # 'thon' (from index 2 to 5)
     word[:3]     # 'Pyt' (from start to index 2)
     word[3:]     # 'hon' (from index 3 to end)
