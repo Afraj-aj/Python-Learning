@@ -3,12 +3,23 @@ Iterables
 
 Concept
 -------
-Any object that can return its elements one by one, allowing it to be used in
-a for loop.
+An object that can provide its elements one by one, allowing it to be used in
+a for loop. Lists, tuples, strings, and range objects are common iterables.
+An iterator is the object that supplies items on successive requests; an
+iterable can create an iterator. A `for` loop handles this process and stops
+normally when the iterator is exhausted.
+`iter(iterable)` requests an iterator. Python also supports
+`iter(callable, sentinel)`, which calls the zero-argument callable until its
+result equals the sentinel. `next(iterator)` raises `StopIteration` when
+exhausted; with a default argument it returns that default instead.
+Passing a non-iterable to `iter()` or a non-iterator to `next()` raises
+`TypeError`. The callable-sentinel form continues until the sentinel is
+returned; if it never is, iteration does not finish.
 
 Examples
 --------
-    Range objects: Created by the range() function.
+    Range objects: Created by the range() function; they represent an
+                   arithmetic progression of integers.
     Strings: The loop iterates over each individual character.
     Lists: The loop iterates over each item in the list.
 
@@ -21,21 +32,40 @@ Example:
     # Range object
     for i in range(3):
         print(i)
-    # Output: 0, 1, 2
+    # Output (one item per line): 0 / 1 / 2
 
     # String - iterates over each character
     for char in "hello":
         print(char)
-    # Output: h, e, l, l, o
+    # Output (one character per line): h / e / l / l / o
 
     # List - iterates over each item
     shopping_cart = ["apple", "banana", "milk"]
     for item in shopping_cart:
         print(item)
-    # Output: apple, banana, milk
+    # Output (one item per line): apple / banana / milk
 
     # Tuple
     coordinates = (10, 20)
     for coord in coordinates:
         print(coord)
-    # Output: 10, 20
+    # Output (one item per line): 10 / 20
+
+An iterator is usually consumed as it is read. A second loop over the same
+iterator may see no items left, while iterating over a list again starts a new
+iteration.
+`next(iterator)` returns the next item and raises `StopIteration` when exhausted;
+`next(iterator, default)` returns the supplied default instead.
+
+Example:
+    items = iter([1, 2])
+    print(next(items))  # 1
+    print(next(items))  # 2
+    # next(items)       # StopIteration: iterator is exhausted
+    print(next(items, "done"))  # done
+
+    # The two-argument iter form stops before yielding the sentinel
+    values = iter([1, 2, 0])
+    def read_value():
+        return next(values)
+    print(list(iter(read_value, 0)))  # [1, 2]

@@ -8,7 +8,10 @@ Used to exit a loop prematurely when a specific condition is met.
 Else Clause
 -----------
 A block of code that executes only if the loop completes fully without
-encountering a break statement.
+encountering a `break` statement. It also runs when the iterable is empty.
+Using `continue` does not skip the `else`; a `break` does. An exception that
+escapes the loop prevents the `else` block from running. The same rule applies
+to `while` loops.
 
 Use Case
 --------
@@ -39,3 +42,10 @@ Example:
         print(f"{target} not found in the list")
 
     # Output: 10 not found in the list
+
+    # An empty loop completes normally, so its else block runs
+    for num in []:
+        print(num)
+    else:
+        print("No items")
+    # Output: No items

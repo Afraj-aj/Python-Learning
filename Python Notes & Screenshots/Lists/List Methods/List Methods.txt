@@ -3,15 +3,35 @@ List Methods
 
 Overview
 --------
-Useful methods for modifying and working with lists.
+This note covers the standard list methods and the `len()` built-in. Methods
+that change a list modify it in place; unless noted otherwise, they return
+`None`. List indexes and slice bounds follow the rules in `Lists.txt`.
 
 Common Methods
 --------------
-    append(item):   Adds an item to the end of the list.
-    insert(i, x):   Adds an item at a specific index.
-    remove(item):   Deletes the first occurrence of the specified item.
-    clear():        Removes all items from the list.
-    len(list):      Returns the number of items in the list.
+    append(item): Adds one item to the end; it does not unpack iterables.
+    extend(iterable): Adds each item from an iterable.
+    insert(index, item): Inserts before the given position. Negative indexes
+                         count from the end; out-of-range indexes are clamped.
+    remove(value): Removes the first equal item; raises ValueError if absent.
+    pop(index=-1): Removes and returns an item; defaults to the last item.
+    clear(): Removes all items.
+    index(value, start=0, stop=...): Returns the first matching index;
+                                     optional bounds limit the search.
+    count(value): Returns the number of equal items.
+    sort(*, key=None, reverse=False): Sorts in place; returns None.
+    reverse(): Reverses the list in place; returns None.
+    copy(): Returns a shallow copy.
+    len(items): Built-in function that returns the number of items.
+
+`pop()` on an empty list, or with an invalid index, raises `IndexError`.
+`index()` raises `ValueError` if the item is absent; `remove()` does the same.
+Indexes and optional search bounds must be integers (or integer-like values).
+`sort()` requires mutually orderable items unless a suitable `key` is
+provided; it is stable and accepts keyword-only `key` and `reverse` arguments.
+The key must be callable; incompatible items or a failing key function raise
+an exception.
+`copy()` and slicing are shallow: nested objects remain shared.
 
 Example:
     numbers = [1, 2, 3]
@@ -20,17 +40,51 @@ Example:
     numbers.append(4)
     print(numbers)   # [1, 2, 3, 4]
 
-    # insert - add at index
+    # extend adds each element; append would add the whole list as one item
+    numbers.extend([5, 6])
+    print(numbers)   # [1, 2, 3, 4, 5, 6]
+    letters = []
+    letters.extend("ab")
+    print(letters)   # ['a', 'b'] (strings are iterable)
+
+    # insert - add before index 1
     numbers.insert(1, 10)
-    print(numbers)   # [1, 10, 2, 3, 4]
+    print(numbers)   # [1, 10, 2, 3, 4, 5, 6]
+    numbers.insert(-1, 99)  # Inserts before the current last item
+    numbers.remove(99)
+    numbers.insert(100, 7)  # An index beyond the end appends
+    numbers.pop()            # Remove 7 before continuing
 
     # remove - delete an item
     numbers.remove(10)
-    print(numbers)   # [1, 2, 3, 4]
+    print(numbers)   # [1, 2, 3, 4, 5, 6]
+    # numbers.remove(99)  # ValueError: value is not present
+
+    # pop returns the removed item; the index is optional and defaults to -1
+    last = numbers.pop()
+    first = numbers.pop(0)
+    print(last, first)  # 6 1
 
     # clear - empty the list
     numbers.clear()
     print(numbers)   # []
+
+    # count and index accept a value; index also accepts optional bounds
+    values = [2, 1, 2, 3]
+    print(values.count(2))       # 2
+    print(values.index(2, 1))    # 2
+    # values.index(9)            # ValueError: value is not present
+
+    # sort can accept key and reverse keyword arguments
+    words = ["pear", "fig", "apple"]
+    words.sort(key=len, reverse=True)
+    print(words)  # ['apple', 'pear', 'fig']
+
+    # reverse mutates the list; copy makes a shallow copy
+    original = [1, 2, 3]
+    copied = original.copy()
+    original.reverse()
+    print(original, copied)  # [3, 2, 1] [1, 2, 3]
 
     # len - list size
     fruits = ["apple", "banana", "cherry"]

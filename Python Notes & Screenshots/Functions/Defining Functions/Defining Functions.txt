@@ -1,5 +1,5 @@
 Defining Functions
-=================
+==================
 
 Purpose
 -------
@@ -15,7 +15,11 @@ The code block belonging to the function must be indented.
 
 Best Practices
 --------------
-PEP 8 recommends adding two line breaks after the function definition.
+PEP 8 recommends two blank lines between top-level function and class
+definitions. Inside a class, use one blank line between methods.
+Calling a function runs its body; defining it alone does not. A function that
+reaches the end without returning a value returns `None`. A `return` statement
+ends the current call immediately; a bare `return` also returns `None`.
 
 Example:
     def greet():
@@ -28,3 +32,11 @@ Example:
     # Call the functions
     greet()          # Hello, world!
     add_numbers(3, 5)  # 8
+
+    def divide(a, b):
+        if b == 0:
+            return None
+        return a / b
+
+    print(divide(5, 2))  # 2.5
+    print(divide(5, 0))  # None

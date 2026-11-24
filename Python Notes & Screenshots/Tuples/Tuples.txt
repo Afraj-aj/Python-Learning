@@ -3,28 +3,53 @@ Tuples
 
 Definition
 ----------
-Similar to lists but defined with parentheses ().
-Tuples are ordered and immutable (cannot change, add, or remove elements
-after creation).
+Similar to lists, tuples are ordered collections. The comma creates a tuple;
+parentheses are commonly used to group its items. `()` is the empty tuple;
+`tuple(iterable)` makes a tuple from an iterable; a non-iterable argument
+raises `TypeError`.
+Tuples are ordered and immutable: their element references cannot be changed,
+added, or removed after creation. An object stored inside a tuple may itself
+be mutable.
 
 Use Case
 --------
-Use when data should stay constant throughout the program.
+Use when the tuple's item references should stay fixed. Immutability does not
+make mutable objects stored inside the tuple immutable.
 
 Example:
     coordinates = (10, 20)
     colors = ("red", "green", "blue")
     single = (42,)   # Single-element tuple needs a trailing comma
+    also_single = 42, # Parentheses are optional; the comma is what matters
+    empty = ()
+    letters = tuple("abc")  # ('a', 'b', 'c')
 
 Accessing Elements
 ------------------
 Access elements the same way as lists, using indexes and slicing.
+An invalid integer index raises `IndexError`; slices use the same omitted
+bounds, negative indexes, steps, and clipping rules as list slices.
 
 Example:
     point = (3, 7, 9)
     point[0]     # 3
     point[-1]    # 9
     point[0:2]   # (3, 7)
+    point[::-1]  # (9, 7, 3)
+    # point[3]   # IndexError
+
+Tuple unpacking
+---------------
+Unpacking assigns tuple items to names. The number of targets must match the
+number of items unless one target uses `*` to collect the remaining items.
+Otherwise Python raises `ValueError`.
+
+Example:
+    x, y = (3, 7)
+    first, *middle, last = (1, 2, 3, 4)
+    print(x, y)                 # 3 7
+    print(first, middle, last)  # 1 [2, 3] 4
+    # x, y = (1, 2, 3)          # ValueError: too many values to unpack
 
 Immutability
 ------------
@@ -34,7 +59,15 @@ Example:
     point = (3, 7)
     # point[0] = 5   # TypeError: 'tuple' object does not support item assignment
 
-    # Tuples support count and index methods
+    # A tuple cannot be changed, but a mutable item inside it can be changed
+    values = ([1, 2],)
+    values[0].append(3)
+    print(values)  # ([1, 2, 3],)
+
+    # count(value) returns a count; index(value, start=0, stop=end) finds
+    # the first match in the optional bounds and raises ValueError if absent.
     nums = (1, 2, 2, 3)
     nums.count(2)    # 2
     nums.index(3)    # 3
+    nums.index(2, 2) # 2 (start searching at index 2)
+    # nums.index(9)  # ValueError: value is not present

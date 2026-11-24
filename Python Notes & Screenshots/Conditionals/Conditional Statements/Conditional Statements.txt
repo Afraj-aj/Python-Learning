@@ -8,14 +8,20 @@ on Boolean conditions.
 
 Structure
 ---------
-Uses if, elif (else if), and else statements.
+Uses `if`, zero or more `elif` clauses, and an optional `else` clause. Python
+tests the conditions in order and runs only the first matching block.
 
 Syntax Rules
 ------------
-Conditions must result in a Boolean.
+Conditions are tested for truthiness. Comparisons produce Booleans, but other
+values can also be used (for example, an empty string is false and a non-empty
+string is true).
 Use a colon (:) after the condition.
 Indentation is mandatory and must be consistent to define the code blocks
 belonging to each statement.
+If no condition is true and there is no `else`, the program continues after
+the whole conditional. Exceptions raised while evaluating a condition are not
+silently ignored.
 
 Example:
     temperature = 25
@@ -30,3 +36,9 @@ Example:
         print("It's cold outside")
 
     # Output: It's warm outside
+
+    # Truthiness and an optional else
+    name = ""
+    if name:
+        print("Name provided")
+    print("This line runs even when name is empty")

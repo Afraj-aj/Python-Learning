@@ -6,10 +6,17 @@ Purpose
 Used to combine multiple Boolean expressions to model complex decision logic.
 
 Operators
---------
-    and: Returns True only if both conditions are true.
-    or:  Returns True if at least one condition is true.
-    not: Inverses the Boolean value (e.g., True becomes False).
+---------
+    and: Returns the first falsy operand, or the last operand if all are truthy.
+    or:  Returns the first truthy operand, or the last operand if all are falsy.
+    not: Returns the opposite truth value as a Boolean (True or False).
+
+In an if statement, these returned values are tested for truthiness. Therefore,
+`and` and `or` do not always return a Boolean.
+Both operators short-circuit: `and` skips its right operand when the left is
+falsy, and `or` skips it when the left is truthy. `not` has higher precedence
+than `and`, which has higher precedence than `or`; use parentheses when this
+order is not obvious.
 
 Example:
     age = 25
@@ -42,3 +49,14 @@ Example:
     # Avoid
     if is_valid == True:
         print("Valid")
+
+    # and/or can return operands rather than Booleans
+    result = "" or "fallback"
+    print(result)  # fallback
+
+    result = "ready" and 42
+    print(result)  # 42
+
+    # Parentheses make the intended grouping explicit
+    if (age >= 18 and has_id) or is_admin:
+        print("Access granted")

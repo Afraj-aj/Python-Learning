@@ -4,12 +4,21 @@ The range() Function
 Purpose
 -------
 Generates a sequence of numbers, commonly used with for loops.
+`range` is an immutable sequence object, not a list; it represents its values
+compactly and computes them as needed.
 
 Forms
 -----
     range(stop):          Generates numbers from 0 up to, but not including, stop.
     range(start, stop):   Generates numbers from start up to, but not including, stop.
     range(start, stop, step): Generates numbers from start, stepping by step.
+
+The `stop` value is always excluded. `start` defaults to 0 and `step` defaults
+to 1 in the shorter forms. Arguments must be integers (or integer-like
+values). A step of zero raises `ValueError`; a step with the wrong direction
+produces an empty range.
+Calling `range()` with no arguments, more than three arguments, or
+non-integer arguments raises `TypeError`.
 
 Example:
     # range(5) gives 0 to 4
@@ -26,6 +35,16 @@ Example:
     for i in range(5, 10, 2):
         print(i)
     # Output: 5, 7, 9
+
+    # Negative step counts backward; stop is still excluded
+    print(list(range(5, 0, -2)))  # [5, 3, 1]
+    print(list(range(1, 5, -1)))  # [] (step points away from stop)
+    # range(1, 5, 0)  # ValueError: step must not be zero
+
+`range()` accepts one, two, or three arguments. A range can be empty and can
+be tested with `len()`. Convert it to a list only when the values are needed
+as a mutable collection. Very large ranges may raise `OverflowError` when
+their length is requested.
 
     # Convert to a list
     numbers = list(range(5))

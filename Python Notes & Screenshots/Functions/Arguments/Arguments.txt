@@ -13,8 +13,13 @@ The actual values passed to the function when it is called (e.g., "Mosh",
 
 Rules
 -----
-Parameters are required by default.
-Excluding a required argument will raise a TypeError or a linting error.
+Parameters are required unless a default value is provided. In a basic
+function definition, parameters can be passed positionally in definition
+order, or by keyword; see the Keyword Arguments note for keyword calls.
+This note covers ordinary parameters. `/`, `*`, `*args`, and `**kwargs` can
+further restrict or expand argument forms; see the related notes.
+Missing required arguments, too many positional arguments, or supplying one
+parameter more than once raises `TypeError`.
 
 Example:
     def print_name(first_name, last_name):
@@ -29,3 +34,10 @@ Example:
 
     # This will raise a TypeError - missing required argument
     # print_name("Mosh")  # TypeError: print_name() missing 1 required positional argument
+
+    # Keywords may be used in either order for ordinary parameters
+    print_name(last_name="Hamedani", first_name="Mosh")
+
+    # These invalid calls raise TypeError
+    # print_name("Mosh", "Hamedani", "Extra")  # too many arguments
+    # print_name("Mosh", first_name="Alice")   # first_name supplied twice

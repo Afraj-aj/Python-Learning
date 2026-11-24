@@ -3,15 +3,20 @@ xargs
 
 Purpose
 -------
-Allows a function to accept a variable number of arguments.
+Allows a function to accept a variable number of positional arguments. This
+feature is commonly called arbitrary or variable-length positional arguments;
+`xargs` is a folder/topic label, not special Python syntax.
 
 Implementation
 --------------
-Use an asterisk `*` before the parameter name (e.g., `*numbers`).
+Use an asterisk `*` before the parameter name (commonly `*args`, or a
+descriptive name such as `*numbers`).
 
 Mechanism
 ---------
 Python packs these arguments into a tuple (an iterable collection).
+The tuple is empty when no extra positional arguments are supplied. The name
+`args` is only a convention: any valid parameter name can follow `*`.
 
 Usage
 -----
@@ -28,6 +33,7 @@ Example:
     print(multiply(2, 3, 4))    # 24
     print(multiply(2, 3, 4, 5)) # 120
     print(multiply(5))          # 5
+    print(multiply())           # 1 (the loop has no iterations)
 
     # Another example - sum of arbitrary numbers
     def total(*numbers):
@@ -35,3 +41,20 @@ Example:
 
     print(total(1, 2, 3))       # 6
     print(total(10, 20, 30, 40)) # 100
+    print(total())              # 0 (sum of an empty tuple)
+
+At a call site, a leading `*` expands an iterable into positional arguments:
+
+Example:
+    values = [2, 3, 4]
+    print(multiply(*values))  # 24
+
+When `*args` appears in a function definition, any parameters after it are
+keyword-only. `**kwargs` separately collects extra keyword arguments and is
+not covered in this note.
+
+Example:
+    def show_values(*values, label):
+        print(label, values)
+
+    show_values(1, 2, label="items")  # items (1, 2)

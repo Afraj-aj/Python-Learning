@@ -4,15 +4,26 @@ Chaining Comparison Operators
 Purpose
 -------
 A technique to write cleaner, more mathematical conditional expressions.
+For chained comparisons, the middle expression is evaluated only once.
 
 Syntax
 ------
 Instead of `age >= 18 and age < 65`, you can write `18 <= age < 65`.
+Chained comparisons can use `<`, `<=`, `>`, and `>=`; the same form also
+supports equality comparisons such as `a == b == c`.
 
 Benefit
 -------
 Makes the code more readable and closely mirrors standard mathematical
 notation.
+The chain stops at the first false comparison, like comparisons joined with
+`and`, and each middle expression is evaluated only once.
+
+Boundaries
+----------
+Use `<` or `>` when the boundary is excluded, and `<=` or `>=` when it is
+included. The values being compared must support the requested comparisons;
+otherwise Python may raise a `TypeError`.
 
 Example:
     age = 30
@@ -34,7 +45,13 @@ Example:
     if 0 < num < 100:
         print("Number is between 0 and 100")
 
-    # Works with strings too
-    name = "Alice"
-    if "A" <= name < "M":
-        print("Name starts with A-L")
+    # Inclusive boundaries
+    score = 70
+    if 70 <= score <= 90:
+        print("Score is in range")  # Includes both 70 and 90
+
+    # Chaining is also supported for other orderable values, including strings.
+    # String comparisons are lexicographic and case-sensitive; they do not
+    # check whether a string starts with a particular letter.
+    "Apple" < "Banana"  # True
+    3 == 3 == 3          # True

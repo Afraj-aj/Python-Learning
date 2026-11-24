@@ -12,6 +12,24 @@ Common Sequences
     \':    Adds a single quote.
     \\:    Adds a literal backslash.
     \n:    Adds a new line.
+    \t:    Adds a tab.
+    \r:    Adds a carriage return.
+    \b:    Adds a backspace.
+    \f:    Adds a form feed.
+    \v:    Adds a vertical tab.
+    \a:    Adds an alert character.
+
+Unicode and numeric escapes
+---------------------------
+    \ooo:          Character with an octal value (up to 3 octal digits).
+    \xhh:          Character with a two-digit hexadecimal value.
+    \uxxxx:        Unicode code point using 4 hexadecimal digits.
+    \Uxxxxxxxx:    Unicode code point using 8 hexadecimal digits.
+    \N{name}:      Unicode character identified by its Unicode name.
+
+A backslash followed by a physical newline continues the source line without
+adding a newline character. Unknown escape sequences are not a way to insert a
+special character; avoid them (Python may warn about them).
 
 Example:
     # Double quote inside string
@@ -33,3 +51,31 @@ Example:
     # Line 1
     # Line 2
     # Line 3
+
+    # Tab, carriage return, and hexadecimal escape
+    print("A\tB")       # A and B are separated by a tab
+    print("A\nB")       # \n inserts a line break
+    print("\x41")       # A
+    print("\u03A9")     # Ω
+    print("\U0001F600") # 😀
+    print("\101")       # A (octal)
+    print("\N{GREEK CAPITAL LETTER OMEGA}")  # Ω (Unicode name)
+    controls = ["\a", "\b", "\f", "\r", "\t", "\v"]
+    print([repr(char) for char in controls])  # Show control escapes safely
+
+    # A backslash followed by a source newline joins the lines
+    joined = "first\
+second"
+    print(joined)  # firstsecond
+
+Raw strings
+-----------
+Prefix a string literal with `r` or `R` to keep backslashes literal, which is
+useful for regular expressions and Windows paths. Quotes still need to be
+escaped when required, and a raw string cannot end with an odd number of
+backslashes.
+
+Example:
+    path = r"C:\Users\Afraj"
+    print(path)  # C:\Users\Afraj
+    # r"ends with a backslash\"  # SyntaxError: raw strings cannot end this way

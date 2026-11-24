@@ -1,13 +1,17 @@
-Ternary Operator
-================
+Conditional Expression (Ternary Expression)
+===========================================
 
 Purpose
 -------
-Provides a concise, one-line syntax for simple conditional assignments.
+Provides a concise, one-line syntax for choosing between two expressions.
+It is often informally called Python's ternary operator.
 
 Syntax
 ------
     value_if_true if condition else value_if_false
+The condition uses Python truth testing. Exactly one of the two value
+expressions is evaluated, and the expression returns that value (it does not
+necessarily return a Boolean).
 
 Benefit
 -------
@@ -31,3 +35,7 @@ Example:
 
     temperature = 30
     message = "Hot" if temperature > 25 else "Pleasant"
+
+    # The unselected expression is not evaluated
+    result = "available" if True else 1 / 0
+    print(result)  # available

@@ -7,9 +7,16 @@ Defines the order in which operations are evaluated in an expression.
 
 Rules
 -----
-Follows math rules: multiplication and division happen before addition and
-subtraction.
-Use parentheses to override precedence and force a specific order.
+Python has a defined operator-precedence order. For arithmetic, exponentiation
+is evaluated before multiplication, division, floor division, and modulo;
+these are evaluated before addition and subtraction. Operators at the same level
+generally evaluate left to right, except exponentiation, which groups right to
+left. Unary `+` and `-` bind less tightly than exponentiation on their right,
+so `-2 ** 2` means `-(2 ** 2)`. Comparisons are evaluated before `not`, then
+`and`, then `or`. Use parentheses to make the intended order clear or to
+override precedence.
+This note focuses on arithmetic and Boolean-expression precedence; Python also
+defines precedence for other operators such as indexing and function calls.
 
 Example:
     result = 10 + 3 * 2
@@ -23,3 +30,14 @@ Example:
 
     result = 10 / (2 + 3) * 4
     print(result)      # 8.0 (2+3=5, 10/5=2.0, 2.0*4=8.0)
+
+    result = 2 ** 3 ** 2
+    print(result)      # 512 (2 ** (3 ** 2))
+
+    result = -2 ** 2
+    print(result)      # -4, not 4
+    print(2 ** -1)     # 0.5; a unary minus is allowed in the exponent
+    print(2 ** -1)     # 0.5; a unary minus is allowed in the exponent
+
+    result = 2 < 3 and 4 < 5 or False
+    print(result)      # True; comparisons, then and, then or

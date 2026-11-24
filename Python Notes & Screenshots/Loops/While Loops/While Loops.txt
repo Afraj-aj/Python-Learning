@@ -5,16 +5,20 @@ Definition
 ----------
 A loop that continues to execute as long as a specified condition remains True.
 Used for repeating tasks until a condition is no longer True.
+The condition is checked before each iteration, so a false condition at the
+start means the body runs zero times.
 
 Mechanism
 ---------
-Unlike for loops which iterate over a known collection, while loops rely on
-boolean evaluation.
+Unlike a `for` loop, which gets its items from an iterable, a `while` loop
+tests a condition before each iteration. The condition may be any expression;
+Python evaluates its truth value, not just literal `True` or `False`.
 
 Exit Condition
 --------------
-Always include an exit condition (like incrementing a counter) to avoid
-infinite loops.
+Ensure the condition can eventually become false, or use `break`, `return`, or
+an exception to exit. If it never ends intentionally, the loop can run
+indefinitely; see Infinite Loops.
 
 Common Pattern
 --------------
@@ -25,6 +29,8 @@ Best Practice
 -------------
 Use methods like .lower() on strings before comparison to ensure the condition
 is case-insensitive.
+An optional `else` runs when the loop ends without `break`, including when the
+condition was false initially. `continue` does not suppress it.
 
 Example:
     # Simple counter
@@ -48,3 +54,14 @@ Example:
     while attempts < max_attempts:
         print(f"Attempt {attempts + 1}")
         attempts += 1
+
+    # The condition is false before the first check of the body
+    while False:
+        print("This will not print")
+
+    # while-else runs when the loop ends without break
+    count = 0
+    while count < 2:
+        count += 1
+    else:
+        print("Finished")  # Runs because the loop did not break

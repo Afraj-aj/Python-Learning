@@ -1,18 +1,24 @@
 Comparison Operators
-===================
+====================
 
-Function
---------
-Used to compare values, resulting in a Boolean (True or False).
+Purpose
+-------
+For the built-in types covered here, comparison operators produce `True` or
+`False`. Values must support the requested comparison; ordering values of
+incompatible types (such as an integer and a string) raises `TypeError`.
 
 Operators
---------
+---------
     >:   Greater than
     >=:  Greater than or equal to
     <:   Less than
     <=:  Less than or equal to
     ==:  Equality
     !=:  Not equal
+    in:      Membership in a container
+    not in:  Absence from a container
+    is:      Object identity
+    is not:  Different object identity
 
 Example:
     a = 10
@@ -25,13 +31,35 @@ Example:
     a == b   # False
     a != b   # True
 
+    5 == "5"  # False; equality does not convert the string to a number
+    # 5 < "5"  # TypeError: unlike these built-in types, int and str are not ordered together
+    "py" in "python"       # True
+    "java" not in "python" # True
+    value = None
+    value is None          # True; identity is commonly used for None checks
+
+    left = [1]
+    right = [1]
+    left == right          # True (same contents)
+    left is right          # False (different objects)
+    alias = left
+    alias is left          # True (same object)
+
 String Comparison
 -----------------
-Comparison is possible with strings; character comparison is based on their
-numeric representations (e.g., ASCII values), and comparisons are
-case-sensitive.
+Strings are compared lexicographically by Unicode code point, and comparisons
+are case-sensitive. If one string is a prefix of another, the shorter string
+comes first.
 
 Example:
-    "apple" < "banana"   # True ('a' comes before 'b' in ASCII)
-    "Apple" < "apple"    # True (uppercase 'A' has lower ASCII value than 'a')
+    "apple" < "banana"   # True
+    "Apple" < "apple"    # True (uppercase 'A' has a lower code point)
+    "app" < "apple"      # True (the first string is a prefix)
     "hello" == "Hello"   # False (case-sensitive)
+
+The ordering comparisons `<`, `<=`, `>`, and `>=` are not defined for every
+type. Equality comparisons can be used across different types and may simply
+return `False`. Use `is` for identity checks (especially `is None`), not to
+compare ordinary values; `==` compares values. Membership requires a
+container that supports it; using an unsupported right operand raises
+`TypeError`. For dictionaries, membership tests keys.

@@ -3,13 +3,20 @@ Variables
 
 Purpose
 -------
-Used to store data in the computer's memory temporarily. A variable acts as a
-label referencing a specific memory location.
+Used to give a value a name. In Python, a variable name refers to an object;
+assignment binds a name to that object.
 
 Syntax
 ------
     name = value (e.g., age = 20).
-    Python is case-sensitive.
+    A name must start with a letter or underscore and may then contain
+    letters, digits, or underscores. Names are case-sensitive and cannot be
+    Python keywords.
+
+Assignment binds or rebinds a name to an object; it does not copy the object.
+Assigning a new value does not change other names that referred to the old
+object. Mutable objects can still be changed through any name that refers to
+them.
 
 Example:
     age = 25
@@ -17,9 +24,18 @@ Example:
     height = 5.9
     is_student = True
 
-Primitive Types
----------------
-Python supports basic data types including:
+    # Multiple assignment binds each name to its corresponding value
+    width, height = 10, 20
+    # Chained assignment binds both names to the same object
+    first = second = []
+    first.append("shared")
+    print(second)  # ['shared']; both names refer to the same list
+
+    MAX_RETRIES = 3  # Uppercase is a convention, not an enforced constant
+
+Common Built-in Types
+---------------------
+Python includes commonly used built-in types such as:
     Integers:   Whole numbers (e.g., 1000).
     Floats:     Numbers with decimal points (e.g., 4.99).
     Booleans:   Logical values representing True or False. Note that Python is
@@ -37,9 +53,13 @@ Variable Names
 Best Practices for Readability:
     Descriptive: Use meaningful names (e.g., student_count instead of c1) to
                 make code maintainable.
-    Lowercase:  Use all lowercase letters for naming variables.
+    Lowercase:  Use lowercase letters for ordinary variables.
     Underscores: Use underscores to separate words since spaces are not
                 permitted.
+    Constants:  Uppercase names are commonly used by convention for values
+                intended not to be reassigned; Python does not enforce this.
+    Valid names: Do not start a name with a digit or use a Python keyword.
+                Avoid reusing built-in names such as list or str.
     Formatting: Maintain consistent spacing around the assignment operator
                 (=) for clean code compliant with PEP 8 standards.
 
@@ -49,7 +69,27 @@ Example:
     total_price = 19.99
     is_enrolled = True
 
-    # Avoid
+    # Avoid unclear names or shadowing a built-in
     c1 = 25
-    TP = 19.99
-    IE = True
+    tp = 19.99
+    ie = True
+    list = []  # Avoid: this hides Python's built-in list type
+
+Augmented assignment
+--------------------
+For numeric values, `+=`, `-=`, `*=`, `/=`, `//=`, `%=`, and `**=` update a
+variable using the corresponding arithmetic operation. If the name is
+unbound, reading it before assignment raises `NameError` (or
+`UnboundLocalError` inside a function). For mutable objects such as lists,
+some augmented assignments modify the existing object in place. The
+arithmetic effects of these operators are shown in `Numbers.txt`.
+
+Example:
+    count = 4
+    count += 1
+    print(count)  # 5
+
+    numbers = [1]
+    alias = numbers
+    numbers += [2]
+    print(alias)  # [1, 2]; list += modifies the shared list

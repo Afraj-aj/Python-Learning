@@ -3,8 +3,10 @@ Strings
 
 Definition
 ----------
-Represent sequences of characters surrounded by quotes (single or double).
-Strings are immutable (cannot be changed once created).
+Strings represent sequences of Unicode code points and are written with single
+or double quotes. Triple quotes allow a literal to span lines; `""` is the
+empty string. Strings are immutable, so operations create new strings rather
+than changing the original.
 
 Example:
     name = "Alice"
@@ -16,21 +18,28 @@ Example:
 
 Length
 ------
-Use the built-in len() function to get the number of characters.
+Use the built-in `len(string)` function to get the number of Unicode code
+points. It returns 0 for an empty string; a visible combined character, such
+as some emoji, can contain more than one code point.
 
 Example:
     message = "Python"
     len(message)   # 6
+    len("")        # 0
 
 Indexing
 --------
-Use square brackets [] to access characters. Strings are zero-indexed.
+Use `string[index]` to access one character. Indexes are zero-based; negative
+indexes count backward from the end. Indexes must be integers (or
+integer-like values). An out-of-range index, including any index into an empty
+string, raises `IndexError`.
 
 Example:
     word = "Hello"
     word[0]   # 'H'
     word[1]   # 'e'
     word[4]   # 'o'
+    # word[5]  # IndexError: index is outside the string
 
 Negative Indexing
 -----------------
@@ -41,16 +50,60 @@ Example:
     word[-1]   # 'o'
     word[-2]   # 'l'
     word[-5]   # 'H'
+    # word[-6]  # IndexError: index is outside the string
 
 Slicing
 -------
-Extract portions of a string using [start:end] syntax. The character at the
-end index is excluded from the result.
+Use `string[start:stop:step]` to create a slice. The `stop` index is excluded.
+The step defaults to 1; positive steps move forward, while negative steps move
+backward. Omitted bounds have defaults that depend on the step direction.
 
 Example:
     word = "Python"
-    word[0:3]    # 'Pyt' (from index 0 to 2)
-    word[2:6]    # 'thon' (from index 2 to 5)
-    word[:3]     # 'Pyt' (from start to index 2)
-    word[3:]     # 'hon' (from index 3 to end)
-    word[:]      # 'Python' (entire string)
+    word[0:3]       # 'Pyt' (indexes 0 through 2)
+    word[2:6]       # 'thon' (indexes 2 through 5)
+    word[:3]        # 'Pyt' (start defaults to the beginning)
+    word[3:]        # 'hon' (stop defaults to the end)
+    word[:]         # 'Python' (a slice of the whole string)
+    word[::]        # 'Python' (step defaults to 1)
+    word[1:5:2]     # 'yh' (indexes 1 and 3)
+    word[::2]       # 'Pto' (every second character, starting at index 0)
+    word[1::2]      # 'yhn' (every second character, starting at index 1)
+    word[1:-1]      # 'ytho' (negative stop index; the stop is excluded)
+    word[-4:-1]     # 'tho' (negative start and stop indexes)
+    word[::-1]      # 'nohtyP' (reverse the string)
+    word[4:1:-1]    # 'oht' (move backward; stop index 1 is excluded)
+    word[:2:-1]     # 'noh' (backward with the start omitted)
+    word[-1:-4:-1]  # 'noh' (from last character to index -4, step -1)
+    word[2:2]       # '' (an empty slice)
+    word[2:100]     # 'thon' (stop beyond the string is clipped to its end)
+    word[6:100]     # '' (start at the string's end)
+
+Negative indexes count from the end: `-1` is the last character. Out-of-range
+slice bounds are clipped to the string; they do not cause an `IndexError`.
+Slicing returns a new string and does not change the original.
+
+The step must be a non-zero integer. A step of zero raises `ValueError`, and
+non-integer slice indexes or steps raise `TypeError`. An empty string or a
+slice whose bounds select no indexes returns `""`.
+
+Example:
+    word[::0]       # ValueError: slice step cannot be zero
+    word[1.5:4]     # TypeError: slice indexes must be integers
+
+Combining and checking strings
+------------------------------
+`+` concatenates strings and `*` repeats a string an integer number of times;
+both produce new strings. `in` and `not in` test for a substring and are
+case-sensitive. `+` requires strings on both sides; repetition requires an
+integer count. Unsupported operand types raise `TypeError`. The empty string
+is contained in every string. These operators do not modify their operands.
+
+Example:
+    "Py" + "thon"      # 'Python'
+    "ha" * 3           # 'hahaha'
+    "py" in "python"   # True
+    "PY" in "python"   # False
+    "" in "Python"     # True
+    "Python" * 0       # ''
+    "Python" * -1      # '' (negative repetition count)

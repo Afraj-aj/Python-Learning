@@ -9,11 +9,13 @@ Makes parameters optional by providing a default value in the definition
 Behavior
 --------
 If no argument is provided, the function uses the default value. If provided,
-the default is overridden.
+the default is overridden. Default expressions are evaluated once when the
+function is defined, not on every call.
 
 Rule
 ----
-All optional parameters must come after any required parameters.
+For ordinary positional parameters, parameters with defaults must come after
+parameters without defaults. Keyword-only parameters follow different rules.
 
 Example:
     # Default value for 'by'
@@ -35,3 +37,19 @@ Example:
     # Rule violation - this will raise a SyntaxError
     # def bad_function(a=1, b):  # Non-default argument follows default argument
     #     pass
+
+Mutable defaults
+----------------
+Avoid using a mutable object such as a list as a default value: the same
+object is reused across calls. Use `None` and create a fresh object inside
+the function when each call needs its own value.
+
+Example:
+    def add_item(item, items=None):
+        if items is None:
+            items = []
+        items.append(item)
+        return items
+
+    print(add_item("pen"))   # ['pen']
+    print(add_item("book"))  # ['book']

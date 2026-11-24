@@ -3,10 +3,15 @@ Lists
 
 Definition
 ----------
-Lists store collections of items using square brackets [].
-They are ordered and mutable (items can be changed after creation).
+Lists are ordered, mutable collections. A list literal uses square brackets;
+`list()` creates an empty list and `list(iterable)` makes a list from an
+iterable. Lists can contain mixed types and can contain other lists.
+Passing a non-iterable object to `list()` raises `TypeError`.
 
 Example:
+    empty = []
+    also_empty = list()
+    list("abc")  # ['a', 'b', 'c']
     numbers = [1, 2, 3, 4, 5]
     names = ["Alice", "Bob", "Charlie"]
     mixed = [1, "hello", 3.14, True]
@@ -14,6 +19,8 @@ Example:
 Accessing Elements
 ------------------
 Access elements via index (starts at 0; negative index accesses from the end).
+Indexes must be integers (or integer-like values); a non-integer index raises
+`TypeError`, while an integer outside the valid range raises `IndexError`.
 
 Example:
     fruits = ["apple", "banana", "cherry"]
@@ -21,10 +28,24 @@ Example:
     fruits[1]    # 'banana'
     fruits[-1]   # 'cherry' (last element)
     fruits[-2]   # 'banana' (second from end)
+    # fruits[3]  # IndexError: index is outside the list
+
+Assigning to a valid index replaces that item. An empty list has no valid
+indexes; reading or assigning one raises `IndexError`. Assigning a slice
+requires an iterable on the right-hand side; a non-iterable raises `TypeError`.
+
+Example:
+    fruits[1] = "pear"
+    print(fruits)  # ['apple', 'pear', 'cherry']
 
 Slicing
 -------
-Slicing [start:end] returns a new list excluding the end index.
+Use `list[start:stop:step]` to return a shallow copy containing selected
+items; `stop` is excluded and `step` defaults to 1. Bounds may be omitted and
+may be negative. A negative step traverses backward. Out-of-range slice
+bounds are clipped. Indexes and steps must be integers (or integer-like
+values); a step of zero raises `ValueError`, and non-integer values raise
+`TypeError`.
 
 Example:
     numbers = [10, 20, 30, 40, 50]
@@ -32,3 +53,43 @@ Example:
     numbers[:3]     # [10, 20, 30]
     numbers[2:]     # [30, 40, 50]
     numbers[:]      # [10, 20, 30, 40, 50] (copy of list)
+    numbers[::2]    # [10, 30, 50] (every second item)
+    numbers[::-1]   # [50, 40, 30, 20, 10] (reversed copy)
+    numbers[4:1:-1] # [50, 40, 30] (stop index 1 is excluded)
+    numbers[4:1]    # [] (start is past stop for a positive step)
+    numbers[1:100]  # [20, 30, 40, 50] (stop is clipped to the list end)
+    numbers[20:30]  # [] (start and stop are beyond the end)
+    numbers[:0:-1]  # [50, 40, 30, 20] (negative step; stop 0 excluded)
+    # numbers[::0]  # ValueError: slice step cannot be zero
+    # numbers[1.5:3]  # TypeError: slice indexes must be integers
+
+Because slicing is shallow, the outer list is new but nested mutable items
+are still shared. Assigning a slice can replace or delete a range of items.
+
+Example:
+    original = [[1], [2]]
+    copied = original[:]
+    copied[0].append(3)
+    print(original)  # [[1, 3], [2]] (the nested list is shared)
+
+    numbers[1:3] = [99]  # Replace a slice; the list length can change
+    del numbers[1:3]     # Delete a slice
+    # numbers[1:3] = 99  # TypeError: slice replacement must be iterable
+
+Other operations
+----------------
+`in` and `not in` test whether an equal item is present and return a Boolean.
+`+` and `*` create new lists; `+=` and `*=` update the existing list in
+place. Equality compares items in order. These operations do not deep-copy
+nested objects. `+` requires another list, while `+=` accepts an iterable.
+`*` and `*=` require an integer repeat count. Unsupported operands raise
+`TypeError`.
+
+Example:
+    fruits = ["apple", "pear"]
+    "apple" in fruits       # True
+    "orange" not in fruits  # True
+    fruits + ["orange"]     # ['apple', 'pear', 'orange']
+    fruits * 2              # ['apple', 'pear', 'apple', 'pear']
+    fruits * 0              # []
+    fruits * -1             # []

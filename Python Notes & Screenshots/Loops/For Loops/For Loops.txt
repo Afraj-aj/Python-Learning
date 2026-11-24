@@ -3,23 +3,33 @@ For Loops
 
 Purpose
 -------
-Best way to iterate through items in a list or sequence.
-Cleaner and shorter than a while loop for simple iteration.
-Also used for repeating tasks a specific number of times.
+Use a `for` loop to iterate over the items of an iterable, such as a list,
+string, tuple, or range object. Use a `while` loop when repetition depends on a
+condition rather than iterating over an iterable.
 
 Range Function
 --------------
-Generates a sequence of numbers.
-    range(x):         Generates numbers from 0 up to, but not including, x.
-    range(start, end): Starts at start and ends before end.
-    range(start, end, step): Increments by the step value.
+`range()` returns a compact immutable range object representing integers; it
+does not build a list of all values. Its stop is exclusive, and its arguments
+must be integers (or integer-like values).
+
+    range(stop):              Starts at 0; stop is excluded.
+    range(start, stop):       Uses the supplied start; stop is excluded.
+    range(start, stop, step): Advances by step; step defaults to 1 when omitted.
+
+A negative step counts downward. A zero step raises `ValueError`; if the step
+points away from the stop, the range is empty. See the range note for examples.
 
 For detailed range examples, see: `Loops/The range() Function/The range() Function.txt`
 
 Usage
 -----
-The loop variable (e.g., number) updates in each iteration to reflect the
-current value from the range.
+On each iteration, `for target in iterable` assigns the next item to target
+and runs the indented body. The body runs zero times for an empty iterable.
+The target may unpack each item into multiple names; a mismatched item shape
+raises `ValueError`, while an item that is not iterable raises `TypeError`.
+`break` exits the nearest enclosing loop; `continue` skips to its next
+iteration. A loop's optional `else` clause is covered in the For..Else note.
 
 Example:
     # range(5) - 0 to 4
@@ -41,4 +51,9 @@ Example:
     fruits = ["apple", "banana", "cherry"]
     for fruit in fruits:
         print(fruit)
-    # Output: apple, banana, cherry
+    # Output (one item per line): apple / banana / cherry
+
+    # Unpacking items from an iterable of pairs
+    pairs = [("Ada", 36), ("Lin", 28)]
+    for name, age in pairs:
+        print(f"{name}: {age}")

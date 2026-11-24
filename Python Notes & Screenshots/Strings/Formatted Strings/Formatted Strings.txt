@@ -10,6 +10,11 @@ Syntax
 ------
 Use curly braces {} to contain variables or valid Python expressions that are
 evaluated at runtime.
+Double braces `{{` and `}}` display literal braces. A replacement field can
+also include a conversion (`!s`, `!r`, or `!a`) and a format specification
+after `:`. The expression is evaluated when the f-string is created. The
+conversion selects `str()`, `repr()`, or `ascii()` output, respectively; the
+format specification is interpreted by the value's type.
 
 Example:
     name = "Alice"
@@ -30,3 +35,24 @@ Example:
     # Using uppercase F works the same
     message = F"{name} is {age} years old."
     print(message)   # Alice is 30 years old.
+
+    # Literal braces are doubled
+    print(f"{{name}}")  # {name}
+
+    # Conversions and format specifications
+    value = 3.14159
+    print(f"{value:.2f}")   # 3.14
+    print(f"{value:.{2}f}")  # 3.14 (nested replacement field in format spec)
+    print(f"{name!r}")      # 'Alice' (repr conversion)
+    label = "café"
+    print(f"{label!a}")     # 'caf\xe9' (ASCII-only repr conversion)
+    print(f"{label!s}")     # café (str conversion)
+    print(f"{age=}")        # age=30 (debug form)
+
+Unescaped single braces must form a valid replacement field; unmatched braces
+raise `SyntaxError`. A malformed expression or format specification also
+raises `SyntaxError`; an invalid format specification for a built-in value
+raises `ValueError` or `TypeError` when formatted. Format specifications can
+contain nested replacement fields. This note covers ordinary f-strings; raw
+f-strings have additional backslash rules, and Python does not support
+bytes-formatted strings.

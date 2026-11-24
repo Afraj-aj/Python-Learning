@@ -9,22 +9,30 @@ This file defines the conventions for the entire project. Follow it exactly.
 ## Rule 2: Root Directory
 The project root is `C:\Users\Afraj\Python Learning`.
 
-Files allowed at root:
-- `Tutorial01.py` - Main Python script
+Files and folders currently at root:
+- `Tutorial01.py` - Python practice script
+- `Star Tutorial.py` - Star-pattern practice script
 - `.gitignore` - Ignores large files (images, videos, etc.) from git
-- `README.md` - Project overview (optional)
-- This rules file (`RULES.md`)
+- `README.md` - Optional project overview
+- `RULES.md` - Repository conventions
+- `.kombai/` - Hidden local workspace settings (may be empty)
+- `Python Notes & Screenshots/` - Learning notes and screenshots
 
-No other files or folders at root except `Python Notes & Screenshots/`.
+This is a reference inventory, not a substitute for checking the actual
+workspace. Update it when intentional root-level files or folders are added,
+removed, or renamed.
 
 **Example of correct root structure:**
 ```
 C:\Users\Afraj\Python Learning\
 ├── Tutorial01.py
+├── Star Tutorial.py
 ├── .gitignore
 ├── RULES.md
+├── .kombai\
 └── Python Notes & Screenshots\
 ```
+An optional `README.md` may also be placed at the root.
 
 ---
 
@@ -55,7 +63,7 @@ Python Notes & Screenshots/
 ## Rule 4: Topic Folders
 Each major topic gets a dedicated folder under `Python Notes & Screenshots/`.
 
-Existing topic folders:
+Current topic folders (check the workspace for the authoritative structure):
 - `Variables/`
 - `Receiving Input/`
 - `Numbers/`
@@ -92,7 +100,8 @@ Python Notes & Screenshots/
 ---
 
 ## Rule 5: Note Files
-Every folder MUST contain a `.txt` note file.
+Every topic folder under `Python Notes & Screenshots/` must contain a `.txt`
+note file. Hidden local workspace folders are not topic folders.
 
 **Naming convention:**
 - The file name MUST match the folder name exactly.
@@ -100,7 +109,7 @@ Every folder MUST contain a `.txt` note file.
 - Example: `String Methods/String Methods.txt`
 
 **Content format:**
-- Title on line 1, followed by `=` underline (same length as title)
+- Title on line 1, followed by an `=` underline matching the title length
 - Blank line
 - Section headers (topic name), followed by `-------` underline
 - Blank line
@@ -110,13 +119,14 @@ Every folder MUST contain a `.txt` note file.
 **Example of a well-formatted note file:**
 ```
 String Methods
-=============
+==============
 
 Case Manipulation Methods
 -------------------------
     upper():    Converts a string to all uppercase characters.
     lower():    Converts a string to all lowercase characters.
-    title():    Capitalizes the first letter of every word in the string.
+    title():    Returns a title-cased string; apostrophe handling may be
+                unexpected for names.
 
 Whitespace Management
 ---------------------
@@ -132,7 +142,8 @@ Screenshots are stored in their corresponding topic folder alongside the note fi
 
 **Naming:** Use the default screenshot naming (e.g., `Screenshot 2026-10-25 205631.png`).
 
-**Git:** All image files are ignored via `.gitignore` and will not be committed.
+**Git:** Untracked images with the listed extensions are ignored via
+`.gitignore`. This does not remove files that Git already tracks.
 
 **Example of a folder with both note and screenshot:**
 ```
@@ -165,6 +176,10 @@ When you receive notes for a new topic:
 ---
 
 ## Rule 8: File Organization Summary
+The tree below is a reference snapshot. Check the actual workspace before
+creating, moving, or removing folders, and update this summary when the
+organization intentionally changes.
+
 ```
 Python Notes & Screenshots/
 ├── Variables/
@@ -183,6 +198,8 @@ Python Notes & Screenshots/
 │   │   └── Comparison Operators.txt
 │   ├── Conditional Statements/
 │   │   └── Conditional Statements.txt
+│   ├── Exercise/
+│   │   └── Exercise.txt
 │   ├── Ternary Operator/
 │   │   └── Ternary Operator.txt
 │   ├── Logical Operators/
@@ -254,8 +271,8 @@ Variables
 
 Purpose
 -------
-Used to store data in the computer's memory. A variable acts as a label
-referencing a specific memory location.
+Used to give a value a name. In Python, a variable name refers to an object;
+assignment binds a name to that object.
 
 Example:
     age = 25
@@ -268,3 +285,36 @@ Example:
 - Use 4-space indentation to match the note format
 - Keep examples simple and focused
 - Show the concept in action, not just the definition
+
+---
+
+## Rule 10: Complete Concept Coverage
+For every function, method, operator, or language feature explained in a note:
+
+- Cover its documented forms, parameters/options, defaults, and return value or result.
+- Explain relevant side effects, mutability, boundary behavior, and common errors.
+- Include examples for each meaningfully different form or behavior, including
+  optional arguments and important edge cases.
+- When a concept has too many possible input values to list individually,
+  explain the general rule and demonstrate representative values and boundaries.
+  State the scope of the note rather than implying that a few examples cover
+  every possible input.
+- Keep explanations appropriate to the note's learning level; this rule does
+  not require reproducing the entire Python language or library reference.
+
+For example, a complete beginner-level explanation of string slicing should
+cover omitted start/stop values, positive and negative indexes and steps,
+out-of-range bounds, the exclusive stop, and invalid steps such as zero.
+
+---
+
+## Rule 11: Accuracy and Example Verification
+- Use accurate Python terminology and describe behavior based on the language
+  or library documentation, not guesses.
+- If behavior depends on a Python version or implementation, name the relevant
+  version or implementation and avoid presenting it as universal behavior.
+- Check runnable examples when practical. Confirm their output and any
+  demonstrated exceptions; show expected output or errors when that helps
+  learners understand the result.
+- Do not present an example as tested unless it has actually been run. If it
+  cannot be run, keep it simple and review it carefully for correctness.

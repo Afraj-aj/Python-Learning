@@ -3,18 +3,21 @@ Short-circuit Evaluations
 
 Concept
 -------
-An optimization where the evaluation of an expression stops as soon as the
-result is determined.
+Evaluation of an expression stops as soon as its result is determined. With
+`and` and `or`, the result may be one of the operands rather than a Boolean.
 
 and operator
 ------------
-Stops if the first argument is False because the entire expression is
-guaranteed to be False.
+Stops if the first operand is falsy and returns it; otherwise evaluates and
+returns the second operand. The second operand is evaluated only when the
+first is truthy.
 
 or operator
 -----------
-Stops if the first argument is True because the entire expression is
-guaranteed to be True.
+Stops if the first operand is truthy and returns it; otherwise evaluates and
+returns the second operand. The second operand is evaluated only when the
+first is falsy. `not` evaluates its operand and returns a Boolean, so it is not
+short-circuiting.
 
 Example:
     # AND short-circuit
@@ -32,3 +35,5 @@ Example:
 
     # If username is empty (falsy), the second part is not evaluated
     # This prevents potential errors
+    greeting = username or "Guest"
+    print(greeting)  # "Guest" when username is empty

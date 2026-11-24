@@ -10,6 +10,11 @@ Advantage
 ---------
 Makes the code more readable and clarifies the intent of the arguments,
 especially when a function has multiple inputs.
+For ordinary parameters, each parameter can be supplied only once. A missing
+required parameter, an unknown keyword, or a duplicate value raises
+`TypeError`. Parameter markers `/` and `*` can restrict positional-only and
+keyword-only parameters; those advanced signature forms are outside this
+example's scope.
 
 Example:
     def increment(number, by):
@@ -23,7 +28,7 @@ Example:
     result2 = increment(5, by=2)
     print(result2)  # 7
 
-    # Mixed - keyword must come after positional
+    # Positional arguments must come before keyword arguments
     result3 = increment(5, by=3)
     print(result3)  # 8
 
@@ -33,3 +38,10 @@ Example:
 
     create_profile("Alice", 30, "New York")  # Positional
     create_profile(name="Alice", age=30, city="New York")  # All keyword
+
+    # This is invalid: a positional argument cannot follow a keyword argument
+    # create_profile(name="Alice", 30, city="New York")
+
+    # Unknown or duplicate keywords also raise TypeError
+    # create_profile(name="Alice", age=30, city="Rome", country="Italy")
+    # create_profile("Alice", 30, name="Bob", city="Rome")

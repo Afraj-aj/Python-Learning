@@ -1,4 +1,5 @@
-# Large files - prevent committing screenshots and media
+# Ignore untracked images and media by extension. This does not untrack files
+# that Git already tracks.
 *.png
 *.jpg
 *.jpeg
@@ -16,8 +17,10 @@
 *.7z
 *.tar.gz
 
-# Large files by size (anything over 1MB)
-*.{zip,gz,tar}
+# Git ignore patterns cannot filter files by size; ignore these extensions
+# explicitly instead.
+*.gz
+*.tar
 
 # Python
 __pycache__/

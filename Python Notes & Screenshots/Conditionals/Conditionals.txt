@@ -6,10 +6,13 @@ Overview
 Conditionals allow programs to make decisions by executing different code
 blocks based on Boolean conditions. This topic covers comparison operators,
 conditional statements, logical operators, and related concepts.
+This is an overview; see the linked topic notes for operator forms, truth
+testing, evaluation order, and boundary cases.
 
 Topics in this folder:
 - Comparison Operators
 - Conditional Statements
+- Exercises
 - Ternary Operator
 - Logical Operators
 - Short-circuit Evaluations
@@ -22,3 +25,4 @@ Example:
         print("Adult")
     else:
         print("Minor")
+    # At age 18, the inclusive >= comparison selects "Adult".

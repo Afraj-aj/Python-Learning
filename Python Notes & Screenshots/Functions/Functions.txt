@@ -5,6 +5,9 @@ Overview
 --------
 Functions are used to break large programs into smaller, maintainable, and
 reusable chunks of code.
+This is an overview. See the topic notes for parameter forms, defaults,
+variadic positional arguments, and the difference between printing and
+returning a value.
 
 Topics in this folder:
 - Defining Functions

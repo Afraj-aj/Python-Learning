@@ -1,9 +1,10 @@
 rows = 5
-for i in range(1, rows + 1):
-    spaces = " " * ( rows - i )
-    stars = "* " * i
-    print(spaces + stars)
 
+print("Left-aligned triangle:")
+for i in range(1, rows + 1):
+    print("* " * i)
+
+print("\nCentered pyramid:")
 for j in range(1, rows + 1):
     for k in range(rows - j):
         print(" ", end="")
@@ -11,37 +12,14 @@ for j in range(1, rows + 1):
         print("*", end="")
     print()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print("\nRight-aligned triangle:")
 for a in range(1, rows + 1):
-    for b in range(rows - a):
-        print("", end="")
-    for c in range(a):
-        print("*", end=" ")
-    print()
-
-for a in range(1, rows + 1):
-    for b in range(rows - a):
+    for _ in range(rows - a):
         print(" ", end="")
-    for c in range(a):
-        print("*", end=" ")
+    for _ in range(a):
+        print("*", end="")
     print()
 
-for a in range(1, rows + 1):
-    for b in range(rows - a):
-        print(" ", end=" ")
-    for c in range(a):
-        print("*", end=" ")
-    print()
+print("\nCentered triangle with spaced stars:")
+for i in range(1, rows + 1):
+    print("  " * (rows - i) + "* " * i)

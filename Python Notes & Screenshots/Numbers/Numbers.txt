@@ -4,10 +4,15 @@ Numbers
 Numeric Types
 -------------
 Python supports three main numeric types:
-    Integers:       Whole numbers (e.g., 10).
-    Floats:         Numbers with a decimal point (e.g., 4.99).
+    Integers:       Exact whole numbers (e.g., 10); Python integers have
+                    arbitrary precision, limited by available memory.
+    Floats:         Approximate real numbers (e.g., 4.99); many decimal
+                    fractions cannot be represented exactly in binary.
     Complex Numbers: Numbers in the format a + bj, where b is the imaginary
                     component.
+Complex numbers support arithmetic but not ordering comparisons such as `<`.
+The remainder `%` has the sign of its divisor. Built-in `round()` uses
+round-half-to-even for exact halfway cases; see its examples below.
 
 Example:
     age = 30            # Integer
@@ -20,7 +25,7 @@ Standard mathematical operations include:
     Addition:       +
     Subtraction:    -
     Multiplication: *
-    Division:       / (float result)
+    Division:       / (integer operands produce a float result)
 
 Example:
     a = 10
@@ -30,20 +35,34 @@ Example:
     a - b   # 7
     a * b   # 30
     a / b   # 3.333... (float result)
+    1 / 2   # 0.5; / does not truncate integer operands
+    (3 + 2j) / 2  # (1.5+1j); complex arithmetic returns complex values
 
 Division Variants
 -----------------
-    /:  Using the forward slash results in a float.
-    //: Using double slashes performs integer division.
+    /:  Divides; integer operands produce a float result.
+    //: Floor division; rounds the quotient down toward negative infinity.
+        The result type depends on the operand types.
+        Complex operands are not supported.
 
 Example:
     10 / 3    # 3.333... (float)
-    10 // 3   # 3 (integer division)
+    10 // 3   # 3 (floor division)
+    -10 // 3  # -4 (rounded down, not toward zero)
+    5.0 // 2  # 2.0 (floor division can return a float)
+    10 % 3    # 1 (remainder)
+    -10 % 3   # 2 (remainder has the divisor's sign)
+
+Division, floor division, and modulo by zero raise `ZeroDivisionError`.
+Floating-point results may have small rounding differences; use a tolerance
+when comparing calculated floats for equality.
 
 Additional Operators
 --------------------
     %:  Modulus (remainder).
     **: Exponentiation (powers).
+For real-number arithmetic, a negative exponent produces a floating-point
+result. Raising zero to a negative power raises `ZeroDivisionError`.
 
 Example:
     10 % 3   # 1 (remainder)
@@ -51,18 +70,23 @@ Example:
 
 Augmented Assignment
 --------------------
-Shortened syntax for updating variables, such as x += 3, which is
-equivalent to x = x + 3.
+Shortened arithmetic assignment forms include `+=`, `-=`, `*=`, `/=`, `//=`,
+`%=`, and `**=`. For immutable numbers, each computes the operation and binds
+the result back to the variable.
 
 Example:
     x = 5
     x += 3   # Same as x = x + 3, now x = 8
     x -= 2   # Same as x = x - 2, now x = 6
     x *= 4   # Same as x = x * 4, now x = 24
+    x /= 2   # Same as x = x / 2, now x = 12.0
+    x //= 5  # Floor divide; now x = 2.0
+    x %= 2   # Remainder; now x = 0.0
+    x **= 3  # Power; now x = 0.0
 
 Operator Precedence
 -------------------
-Follows math rules: multiplication and division happen before addition and
+For example, multiplication and division happen before addition and
 subtraction. Use parentheses to override precedence.
 See: `Numbers/Operator Precedence/Operator Precedence.txt` for details and
 examples.
@@ -70,20 +94,44 @@ examples.
 Working With Numbers
 --------------------
 Built-in Functions:
-    round():    Rounds a number to the nearest integer.
-    abs():      Returns the absolute (positive) value of a number.
+    round(number, ndigits=None): Rounds to the nearest multiple of
+                                 10 ** -ndigits; ndigits is optional.
+    abs(number): Returns the non-negative magnitude; complex input returns
+                 its magnitude as a float.
 
 Example:
     round(3.7)     # 4
     round(3.2)     # 3
+    round(3.14159, 2)  # 3.14
+    round(149, -1) # 150 (round to the nearest ten)
     abs(-5)        # 5
     abs(5)         # 5
+    abs(3 + 4j)    # 5.0 (complex magnitude)
+
+When a value is exactly halfway between two integers, `round()` uses
+round-half-to-even (for example, `round(2.5)` is `2` and `round(3.5)` is `4`).
+For built-in `int` and `float` values, `round(number)` returns an integer;
+with `ndigits` supplied, it returns the same type as `number`. `round()` does
+not support complex numbers. Rounding a float does not make its underlying
+binary representation exact.
+
+Example:
+    import math
+
+    value = float("nan")
+    value == value  # False
+    value != value  # True
+    value < 1       # False
+    math.isnan(value)  # True
 
 Math Module
 -----------
 For more complex calculations, import the math module.
-Methods: Access advanced functions using dot notation (e.g., math.ceil())
-after importing the module.
+Use dot notation to access functions and constants (e.g., `math.ceil()` and
+`math.pi`) after importing the module.
+`math.ceil()` and `math.floor()` return integers. `math.sqrt()` accepts
+non-negative real values; a negative input raises `ValueError`. Use `cmath`
+for complex square roots.
 
 Example:
     import math

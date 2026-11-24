@@ -1,5 +1,11 @@
 String Methods
-=============
+==============
+
+Scope
+-----
+This note explains selected common methods rather than the entire `str` API.
+Each listed method follows Python's case-sensitive string behavior and returns
+a new string when it transforms text; strings themselves are immutable.
 
 Object-Oriented Basics
 ----------------------
@@ -12,21 +18,29 @@ Example:
 
 Case Manipulation Methods
 -------------------------
-    upper():    Converts a string to all uppercase characters.
-    lower():    Converts a string to all lowercase characters.
-    title():    Capitalizes the first letter of every word in the string.
+    upper():    Returns an uppercase copy; takes no arguments.
+    lower():    Returns a lowercase copy; takes no arguments.
+    title():    Returns a title-cased copy; takes no arguments. Its treatment
+                of apostrophes may not match human names.
 
 Example:
     text = "hello world"
     text.upper()   # 'HELLO WORLD'
     text.lower()   # 'hello world'
     text.title()   # 'Hello World'
+    "they're HERE".title()  # "They'Re Here"; punctuation affects title casing
 
 Whitespace Management
 ---------------------
-    strip():    Trims whitespace from both the beginning and end of a string.
-    lstrip():   Removes whitespace specifically from the left (beginning) side.
-    rstrip():   Removes whitespace specifically from the right (end) side.
+    strip(chars=None):  Removes leading/trailing whitespace, or any of the
+                        characters in chars when supplied.
+    lstrip(chars=None): Removes from the left only.
+    rstrip(chars=None): Removes from the right only.
+
+When `chars` is supplied, it is treated as a set of characters to remove from
+the edges, not as one exact prefix or suffix. With no argument, whitespace is
+removed. These methods return a new string; if there is nothing to remove, the
+returned string has the same contents as the original.
 
 Example:
     messy = "   hello   "
@@ -36,19 +50,39 @@ Example:
 
 Searching and Replacing
 -----------------------
-    find(sub):  Returns the index of the first occurrence of a substring;
-                returns -1 if the string is not found.
-    replace(old, new): Replaces occurrences of a specific character or sequence
-                with a new one.
+    find(sub, start=0, end=len(string)): Returns the first index in the
+                                         optional search range, or -1.
+    replace(old, new, count=-1): Returns a copy with up to count occurrences
+                                 replaced; the default replaces all.
+
+`find()` returns -1 when no match exists; its optional start and end bounds use
+the same clipping rules as string slices. `replace()` with `count=0` makes no
+replacements, while a negative count means replace all. Supplying the wrong
+argument type raises `TypeError`.
 
 Example:
     sentence = "I like apples"
     sentence.find("like")   # 2
     sentence.find("orange") # -1
+    sentence.find("like", 3) # -1 (start searching at index 3)
+    sentence.find("like", 0, 6)  # 2 (end bound is excluded)
     sentence.replace("apples", "oranges")   # 'I like oranges'
+    sentence.replace("l", "L", 1)  # 'I Like apples' (replace first match only)
+    sentence.replace("l", "L", 0)  # unchanged; count=0 replaces none
+
+`find("")` returns an index even when no visible characters are present; for
+an empty search string it returns the start position, clipped to the string
+length, or `-1` if the start is past the end.
+
+Example:
+    word = "Python"
+    word.strip("Pn")  # 'ytho' (removes any of these chars from either edge)
+    word.replace("", "-")  # '-P-y-t-h-o-n-'
+    changed = word.upper()
+    print(word, changed)  # Python PYTHON; the original was not changed
 
 Membership Operators
--------------------
+--------------------
     in:         Checks for the existence of a character or sequence within a
                 string, returning a Boolean (True or False).
     not in:     Checks if a character or sequence is absent from the string,
@@ -59,3 +93,5 @@ Example:
     "py" in word     # True
     "xyz" in word    # False
     "abc" not in word  # True
+    "" in word         # True (empty substring)
+    # "py" in 12       # TypeError: the left operand must be a string

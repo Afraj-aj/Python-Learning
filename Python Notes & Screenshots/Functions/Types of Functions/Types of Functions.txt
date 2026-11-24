@@ -4,11 +4,15 @@ Types of Functions
 Task-Oriented Functions
 -----------------------
 Designed to perform an action (like print()). They return None by default
-unless specified otherwise.
+unless they explicitly return a value. Calling `print()` displays text but
+itself returns `None`.
 
 Calculation-Oriented Functions
 ------------------------------
 Designed to calculate and return a value using the return statement.
+`return value` ends the current function call and gives that value to the
+caller. Reaching the end of the function, or using bare `return`, gives
+`None`. A function may both perform side effects and return a value.
 
 Benefit
 -------
@@ -29,6 +33,9 @@ Example:
 
     total = add(5, 3)  # Returns 8
     print(total)  # 8
+
+    # A returned value can be used directly
+    print(add(2, 4))  # 6
 
     # Reusability
     numbers = [10, 20, 30]

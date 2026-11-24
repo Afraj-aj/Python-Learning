@@ -7,8 +7,10 @@ A loop placed inside another loop (outer loop and inner loop).
 
 Execution
 ---------
-For every single iteration of the outer loop, the entire inner loop executes
-completely.
+For every iteration of the outer loop, the inner loop starts and normally
+runs to completion unless control flow exits it early. The total number of
+inner-body runs is the product of the iteration counts when neither loop is
+interrupted; if either loop has no iterations, the body never runs.
 
 Applications
 ------------
@@ -27,3 +29,7 @@ Example:
         for col in range(3):
             print(f"({row}, {col})", end=" ")
         print()  # New line after each row
+
+`break` and `continue` affect the nearest enclosing loop only. Use separate
+flags or helper functions if an inner-loop result must also stop the outer
+loop.

@@ -3,17 +3,20 @@ Infinite Loops
 
 Definition
 ----------
-A loop where the condition is always True, causing it to run indefinitely.
+A loop whose condition remains truthy, causing it to run indefinitely unless
+the program exits it with control flow or an external interruption.
 
 Exit Strategy
-------------
-Requires an explicit break statement inside the loop to avoid program crashes
-or memory exhaustion.
+-------------
+An intentional infinite loop can be stopped with `break`, `return`, an
+exception, or an external interruption such as Ctrl+C. A condition that
+eventually becomes false is another common way to end a loop.
 
 Risk
 ----
-If no exit condition exists, the program will consume resources until it is
-manually stopped or crashes.
+An infinite loop does not necessarily consume increasing memory, but it can
+keep using CPU time and prevent later code from running. The effect depends on
+what the loop body does.
 
 Example:
     # Infinite loop with break
@@ -35,7 +38,7 @@ Example:
         else:
             print("Keep going!")
 
-    # WARNING: This will run forever without a break
+    # WARNING: This will run forever unless interrupted
     # while True:
     #     print("This never ends!")
     # Do NOT run this code

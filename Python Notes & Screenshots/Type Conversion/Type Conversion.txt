@@ -19,27 +19,53 @@ Example with input:
 
 Built-in Conversion Functions
 -----------------------------
-    int():  Converts to an integer.
-    float(): Converts to a floating-point number.
-    bool(): Converts to a boolean.
-    str():  Converts to a string.
+    int(number=0):      Converts a numeric value to an integer.
+    int(text, base=10): Parses integer text using the optional base.
+    float(x=0.0):       Converts a number or valid numeric text to a float.
+    bool(x=False):      Returns the truth value of x.
+    str(object=''):     Returns a readable string representation of object.
+
+`int()` accepts an optional base only when converting text; bases are from 2
+through 36, and base 0 recognizes prefixes such as `0b`. A float converted to
+int is truncated toward zero, not rounded. `float()` accepts decimal text and
+valid exponent notation. Invalid numeric text raises `ValueError`;
+unsupported types raise `TypeError`.
+An invalid base raises `ValueError`. Converting infinity to `int()` raises
+`OverflowError`; converting NaN to `int()` raises `ValueError`.
+Text forms such as `"inf"` and `"nan"` are valid for `float()`.
 
 Example:
     num_str = "25"
     age = int(num_str)        # 25 (integer)
+    int(-3.9)                 # -3 (truncates toward zero)
+    int("101", 2)             # 5 (base 2)
+    int("0b101", 0)           # 5 (base inferred from prefix)
     pi = float("3.14")        # 3.14 (float)
+    float("1.2e2")            # 120.0 (exponent notation)
+    float("inf")              # infinity
+    float("nan")              # not-a-number; comparisons have special behavior
     flag = bool(1)            # True
+    bool("False")             # True (non-empty strings are truthy)
     text = str(100)           # "100" (string)
+    int()                     # 0; float() is 0.0; bool() is False; str() is ''
+
+`bool(x)` uses truthiness rather than parsing the text as a Boolean: even
+`bool("False")` is `True`. `str()` can call an object's `__str__()` method;
+its exact output depends on that object's type.
 
 Truthiness and Falsiness
 ------------------------
-Certain values are evaluated as False in a boolean context (falsy values),
-including:
-    Empty strings ("")
-    The number zero (0)
-    The None object (representing the absence of a value)
+In a Boolean context, values are treated as truthy or falsy. Falsy built-in
+values include:
+    False
+    Numeric zero: 0, 0.0, and 0j
+    None (representing the absence of a value)
+    Empty strings and collections, such as "", [], (), {}, and set()
 
-All other values are considered truthy.
+Other built-in values are truthy. A custom object can define its own truth
+value with `__bool__()` or, when that method is absent, `__len__()`. A custom
+`__bool__()` must return a Boolean or raises `TypeError`; `__len__()` must
+return a non-negative integer or raises `TypeError`/`ValueError`.
 
 Example:
     falsy_values = ["", 0, None, [], {}]
