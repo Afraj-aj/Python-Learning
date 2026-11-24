@@ -37,7 +37,6 @@ Example:
     result = -2 ** 2
     print(result)      # -4, not 4
     print(2 ** -1)     # 0.5; a unary minus is allowed in the exponent
-    print(2 ** -1)     # 0.5; a unary minus is allowed in the exponent
 
     result = 2 < 3 and 4 < 5 or False
     print(result)      # True; comparisons, then and, then or

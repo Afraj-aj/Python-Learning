@@ -5,6 +5,10 @@ Usage
 -----
 Prefixed with an f or F, these allow you to inject variables or expressions
 directly into a string.
+F-strings were introduced in Python 3.6. This note uses the debug `=` form,
+which requires Python 3.8 or later. Python 3.12 expanded the expressions
+allowed inside replacement fields; older versions may reject some newer
+syntax. The examples here use syntax supported from Python 3.8.
 
 Syntax
 ------

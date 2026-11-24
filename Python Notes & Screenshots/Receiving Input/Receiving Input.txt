@@ -7,10 +7,10 @@ Used to read data from the terminal (user input) while a program is running.
 
 Syntax
 ------
-`input(prompt=None)` reads one line from standard input. The prompt is
-optional; when provided, it is written without a trailing newline. The
-returned string does not include the line-ending newline. If input reaches
-end-of-file, `input()` raises `EOFError`.
+`input(prompt='', /)` reads one line from standard input. The optional prompt
+defaults to an empty string, is positional-only, and is written without a
+trailing newline. The returned string does not include the line-ending
+newline. If input reaches end-of-file, `input()` raises `EOFError`.
 
 Example:
     name = input("Enter your name: ")

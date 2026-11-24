@@ -11,7 +11,8 @@ Range Function
 --------------
 `range()` returns a compact immutable range object representing integers; it
 does not build a list of all values. Its stop is exclusive, and its arguments
-must be integers (or integer-like values).
+must be integers (or integer-like values). Its one, two, or three arguments
+are positional-only.
 
     range(stop):              Starts at 0; stop is excluded.
     range(start, stop):       Uses the supplied start; stop is excluded.

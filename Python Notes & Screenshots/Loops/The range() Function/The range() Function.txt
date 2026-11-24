@@ -19,6 +19,7 @@ values). A step of zero raises `ValueError`; a step with the wrong direction
 produces an empty range.
 Calling `range()` with no arguments, more than three arguments, or
 non-integer arguments raises `TypeError`.
+All arguments are positional; keyword arguments are not accepted.
 
 Example:
     # range(5) gives 0 to 4
@@ -40,6 +41,7 @@ Example:
     print(list(range(5, 0, -2)))  # [5, 3, 1]
     print(list(range(1, 5, -1)))  # [] (step points away from stop)
     # range(1, 5, 0)  # ValueError: step must not be zero
+    # range(stop=5)   # TypeError: range arguments are positional
 
 `range()` accepts one, two, or three arguments. A range can be empty and can
 be tested with `len()`. Convert it to a list only when the values are needed

@@ -46,6 +46,12 @@ Example:
 At a call site, a leading `*` expands an iterable into positional arguments:
 
 Example:
+    def multiply(*numbers):
+        result = 1
+        for number in numbers:
+            result *= number
+        return result
+
     values = [2, 3, 4]
     print(multiply(*values))  # 24
 

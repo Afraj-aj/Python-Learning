@@ -43,6 +43,10 @@ Avoid comparing Booleans directly with True or False (e.g., use
 
 Example:
     # Good
+    age = 25
+    has_id = True
+    is_admin = False
+    is_valid = True
     if is_valid:
         print("Valid")
 

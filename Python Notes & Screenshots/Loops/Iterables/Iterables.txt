@@ -8,10 +8,12 @@ a for loop. Lists, tuples, strings, and range objects are common iterables.
 An iterator is the object that supplies items on successive requests; an
 iterable can create an iterator. A `for` loop handles this process and stops
 normally when the iterator is exhausted.
-`iter(iterable)` requests an iterator. Python also supports
-`iter(callable, sentinel)`, which calls the zero-argument callable until its
-result equals the sentinel. `next(iterator)` raises `StopIteration` when
-exhausted; with a default argument it returns that default instead.
+`iter(iterable, /)` requests an iterator. Python also supports
+`iter(callable, sentinel, /)`, which calls the zero-argument callable until
+its result equals the sentinel. `next(iterator[, default], /)` returns the next item; without the optional
+default it raises `StopIteration` when exhausted, and with a default it
+returns that value instead. Square brackets here mark an optional argument.
+These arguments are positional-only.
 Passing a non-iterable to `iter()` or a non-iterator to `next()` raises
 `TypeError`. The callable-sentinel form continues until the sentinel is
 returned; if it never is, iteration does not finish.

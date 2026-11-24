@@ -29,7 +29,9 @@ Unicode and numeric escapes
 
 A backslash followed by a physical newline continues the source line without
 adding a newline character. Unknown escape sequences are not a way to insert a
-special character; avoid them (Python may warn about them).
+special character; they are preserved as written. Python 3.12 and later emit
+a `SyntaxWarning` for unrecognized escapes; a future version may reject them.
+Avoid unrecognized escapes.
 
 Example:
     # Double quote inside string

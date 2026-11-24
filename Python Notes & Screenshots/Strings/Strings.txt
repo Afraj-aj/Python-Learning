@@ -88,8 +88,9 @@ non-integer slice indexes or steps raise `TypeError`. An empty string or a
 slice whose bounds select no indexes returns `""`.
 
 Example:
-    word[::0]       # ValueError: slice step cannot be zero
-    word[1.5:4]     # TypeError: slice indexes must be integers
+    word = "Python"
+    # word[::0]       # ValueError: slice step cannot be zero
+    # word[1.5:4]     # TypeError: slice indexes must be integers
 
 Combining and checking strings
 ------------------------------

@@ -9,24 +9,27 @@ that change a list modify it in place; unless noted otherwise, they return
 
 Common Methods
 --------------
-    append(item): Adds one item to the end; it does not unpack iterables.
-    extend(iterable): Adds each item from an iterable.
-    insert(index, item): Inserts before the given position. Negative indexes
+    append(item, /): Adds one item to the end; it does not unpack iterables.
+    extend(iterable, /): Adds each item from an iterable.
+    insert(index, item, /): Inserts before the given position. Negative indexes
                          count from the end; out-of-range indexes are clamped.
-    remove(value): Removes the first equal item; raises ValueError if absent.
-    pop(index=-1): Removes and returns an item; defaults to the last item.
+    remove(value, /): Removes the first equal item; raises ValueError if absent.
+    pop(index=-1, /): Removes and returns an item; defaults to the last item.
     clear(): Removes all items.
-    index(value, start=0, stop=...): Returns the first matching index;
-                                     optional bounds limit the search.
-    count(value): Returns the number of equal items.
+    index(value, start=0, stop=..., /): Returns the first matching index;
+                                        optional bounds limit the search.
+    count(value, /): Returns the number of equal items.
     sort(*, key=None, reverse=False): Sorts in place; returns None.
     reverse(): Reverses the list in place; returns None.
     copy(): Returns a shallow copy.
-    len(items): Built-in function that returns the number of items.
+    len(items, /): Built-in function that returns the number of items.
 
 `pop()` on an empty list, or with an invalid index, raises `IndexError`.
 `index()` raises `ValueError` if the item is absent; `remove()` does the same.
 Indexes and optional search bounds must be integers (or integer-like values).
+The `/` marks positional-only parameters; `sort()` alone accepts keyword-only
+options (`key` and `reverse`). `index()`'s start and stop bounds follow slice
+rules, including negative indexes and an excluded stop.
 `sort()` requires mutually orderable items unless a suitable `key` is
 provided; it is stable and accepts keyword-only `key` and `reverse` arguments.
 The key must be callable; incompatible items or a failing key function raise
@@ -73,6 +76,8 @@ Example:
     values = [2, 1, 2, 3]
     print(values.count(2))       # 2
     print(values.index(2, 1))    # 2
+    print(values.index(2, -3, -1))  # 2 (negative start; stop is excluded)
+    # values.index(2, start=1)   # TypeError: list.index() takes no keyword arguments
     # values.index(9)            # ValueError: value is not present
 
     # sort can accept key and reverse keyword arguments

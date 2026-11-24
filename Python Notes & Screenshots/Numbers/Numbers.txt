@@ -96,8 +96,8 @@ Working With Numbers
 Built-in Functions:
     round(number, ndigits=None): Rounds to the nearest multiple of
                                  10 ** -ndigits; ndigits is optional.
-    abs(number): Returns the non-negative magnitude; complex input returns
-                 its magnitude as a float.
+    abs(number, /): Returns the non-negative magnitude; complex input returns
+                    its magnitude as a float. The argument is positional-only.
 
 Example:
     round(3.7)     # 4
@@ -131,7 +131,8 @@ Use dot notation to access functions and constants (e.g., `math.ceil()` and
 `math.pi`) after importing the module.
 `math.ceil()` and `math.floor()` return integers. `math.sqrt()` accepts
 non-negative real values; a negative input raises `ValueError`. Use `cmath`
-for complex square roots.
+for complex square roots. The functions shown here take their arguments
+positionally.
 
 Example:
     import math

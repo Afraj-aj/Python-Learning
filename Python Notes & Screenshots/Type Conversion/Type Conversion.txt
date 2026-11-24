@@ -1,6 +1,11 @@
 Type Conversion
 ===============
 
+Scope
+-----
+This note covers common conversions with built-in types. It also shows the
+bytes-decoding form of `str()`; custom conversion methods are outside scope.
+
 Necessity
 ---------
 Conversion is required when data types mismatch, such as attempting to
@@ -19,26 +24,34 @@ Example with input:
 
 Built-in Conversion Functions
 -----------------------------
-    int(number=0):      Converts a numeric value to an integer.
-    int(text, base=10): Parses integer text using the optional base.
-    float(x=0.0):       Converts a number or valid numeric text to a float.
-    bool(x=False):      Returns the truth value of x.
-    str(object=''):     Returns a readable string representation of object.
+    int(number=0, /):      Converts a numeric value to an integer.
+    int(string, /, base=10): Parses integer text using the optional base.
+    float(x=0.0, /):       Converts a number or valid numeric text to a float.
+    bool(x=False, /):      Returns the truth value of x.
+    str(object='', /):     Returns a readable string representation of object.
+    str(bytes_like, encoding, errors='strict'): Decodes bytes using the codec;
+                                                encoding is required.
 
 `int()` accepts an optional base only when converting text; bases are from 2
-through 36, and base 0 recognizes prefixes such as `0b`. A float converted to
-int is truncated toward zero, not rounded. `float()` accepts decimal text and
-valid exponent notation. Invalid numeric text raises `ValueError`;
-unsupported types raise `TypeError`.
+through 36, and base 0 recognizes prefixes such as `0b`. Its first argument
+is positional-only, while `base` may be positional or a keyword. A float
+converted to int is truncated toward zero, not rounded. `float()` accepts
+decimal text and valid exponent notation.
+Invalid numeric text raises `ValueError`; unsupported types raise `TypeError`.
 An invalid base raises `ValueError`. Converting infinity to `int()` raises
 `OverflowError`; converting NaN to `int()` raises `ValueError`.
-Text forms such as `"inf"` and `"nan"` are valid for `float()`.
+Text forms such as `"inf"` and `"nan"` are valid for `float()`. The first
+argument to `str()` is positional-only. The bytes-like form requires an
+encoding; `encoding` and the optional `errors` argument may be keywords, and
+`errors` selects how decoding problems are handled. The default `"strict"` raises
+`UnicodeDecodeError` for invalid bytes; `"replace"` substitutes U+FFFD.
 
 Example:
     num_str = "25"
     age = int(num_str)        # 25 (integer)
     int(-3.9)                 # -3 (truncates toward zero)
     int("101", 2)             # 5 (base 2)
+    int("101", base=2)        # 5 (base may be a keyword)
     int("0b101", 0)           # 5 (base inferred from prefix)
     pi = float("3.14")        # 3.14 (float)
     float("1.2e2")            # 120.0 (exponent notation)
@@ -47,11 +60,16 @@ Example:
     flag = bool(1)            # True
     bool("False")             # True (non-empty strings are truthy)
     text = str(100)           # "100" (string)
+    str(b"caf\xc3\xa9", encoding="utf-8")  # Decodes bytes to "café"
+    str(b"\xff", "utf-8", "replace")  # Replaces invalid byte with U+FFFD
     int()                     # 0; float() is 0.0; bool() is False; str() is ''
+    # int(number=5)           # TypeError: first argument is positional-only
+    # int(5, base=2)          # TypeError: base is only allowed with text
+    # str(b"\xff", "utf-8")   # UnicodeDecodeError with the default strict mode
 
 `bool(x)` uses truthiness rather than parsing the text as a Boolean: even
-`bool("False")` is `True`. `str()` can call an object's `__str__()` method;
-its exact output depends on that object's type.
+`bool("False")` is `True`. `str(object)` can call an object's `__str__()`
+method; its exact output depends on that object's type.
 
 Truthiness and Falsiness
 ------------------------

@@ -9,9 +9,10 @@ assignment binds a name to that object.
 Syntax
 ------
     name = value (e.g., age = 20).
-    A name must start with a letter or underscore and may then contain
-    letters, digits, or underscores. Names are case-sensitive and cannot be
-    Python keywords.
+    In common ASCII identifiers, a name starts with a letter or underscore
+    and may then contain letters, digits, or underscores. Python also permits
+    many Unicode letters in identifiers. Names are case-sensitive and cannot
+    be Python keywords.
 
 Assignment binds or rebinds a name to an object; it does not copy the object.
 Assigning a new value does not change other names that referred to the old
