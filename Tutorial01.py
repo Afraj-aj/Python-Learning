@@ -11,50 +11,19 @@ print(z-h)
 #if (h > x):
 #    print(f"{h} is greater than {x}")
 
-rows = 5
-for i in range(1, rows + 1):
-    spaces = " " * ( rows - i )
-    stars = "* " * i
-    print(spaces + stars)
+#int1 = int(input("Enter an integer number: "))
+#float1 = float(input("Enter a float number: "))
+# print(int1 + float1)
 
-for j in range(1, rows + 1):
-    for k in range(rows - j):
-        print(" ", end="")
-    for l in range(2 * j - 1):
-        print("*", end="")
-    print()
+cource = 'python'' ''language'' ''learning'
+cource2 = 'python\'s'' ''language'' ''learning'
 
+predefined = '''
+This is a multi-line string. 
 
+It can be used to write long text or comments that span multiple lines.
+'''
 
-
-
-
-
-
-
-
-
-
-
-
-
-for a in range(1, rows + 1):
-    for b in range(rows - a):
-        print("", end="")
-    for c in range(a):
-        print("*", end=" ")
-    print()
-
-for a in range(1, rows + 1):
-    for b in range(rows - a):
-        print(" ", end="")
-    for c in range(a):
-        print("*", end=" ")
-    print()
-
-for a in range(1, rows + 1):
-    for b in range(rows - a):
-        print(" ", end=" ")
-    for c in range(a):
-        print("*", end=" ")
-    print()
+print(cource)
+print(cource2)
+print(predefined)
