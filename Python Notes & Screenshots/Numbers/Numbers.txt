@@ -108,8 +108,8 @@ Example:
     abs(5)         # 5
     abs(3 + 4j)    # 5.0 (complex magnitude)
 
-When a value is exactly halfway between two integers, `round()` uses
-round-half-to-even (for example, `round(2.5)` is `2` and `round(3.5)` is `4`).
+When a value is exactly halfway between two integers, 'round()' uses
+round-half-to-even (for example, 'round(2.5)' is `2` and 'round(3.5)' is `4`).
 For built-in `int` and `float` values, `round(number)` returns an integer;
 with `ndigits` supplied, it returns the same type as `number`. `round()` does
 not support complex numbers. Rounding a float does not make its underlying
@@ -127,7 +127,7 @@ Example:
 Math Module
 -----------
 For more complex calculations, import the math module.
-Use dot notation to access functions and constants (e.g., `math.ceil()` and
+Use dot notation to access functions and constants (e.g., 'math.ceil()' and
 `math.pi`) after importing the module.
 `math.ceil()` and `math.floor()` return integers. `math.sqrt()` accepts
 non-negative real values; a negative input raises `ValueError`. Use `cmath`
