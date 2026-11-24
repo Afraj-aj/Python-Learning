@@ -4,7 +4,7 @@ Default Arguments
 Purpose
 -------
 Makes parameters optional by providing a default value in the definition
-(e.g., `def increment(number, by=1)`).
+(e.g., def increment(number, by=1))
 
 Behavior
 --------
