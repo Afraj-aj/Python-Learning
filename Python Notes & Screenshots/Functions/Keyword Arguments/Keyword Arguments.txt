@@ -5,16 +5,21 @@ Usage
 -----
 When calling a function, use the parameter name followed by an equals sign
 (e.g., increment(2, by=1)).
+Use this form when it makes a call clearer, especially when several arguments
+have the same kind of value or a default is being overridden.
 
 Advantage
 ---------
 Makes the code more readable and clarifies the intent of the arguments,
 especially when a function has multiple inputs.
+For example, `send_message(to="Sam", urgent=True)` makes each value's purpose
+clearer than relying on its position alone.
 For ordinary parameters, each parameter can be supplied only once. A missing
 required parameter, an unknown keyword, or a duplicate value raises
-`TypeError`. Parameter markers `/` and `*` can restrict positional-only and
-keyword-only parameters; those advanced signature forms are outside this
-example's scope.
+`TypeError`. In an advanced function definition, `/` marks parameters that must be given
+in order without their names; `*` can mark parameters that must be given by
+name. These symbols describe the function definition and are not typed in
+ordinary calls. See the Arguments note for a small example.
 
 Example:
     def increment(number, by):
@@ -45,3 +50,10 @@ Example:
     # Unknown or duplicate keywords also raise TypeError
     # create_profile(name="Alice", age=30, city="Rome", country="Italy")
     # create_profile("Alice", 30, name="Bob", city="Rome")
+
+Variable Keyword Arguments
+--------------------------
+Use `**kwargs` in a function definition to collect extra named arguments in a
+dictionary. The name `kwargs` is conventional; it can be replaced with a
+different valid parameter name. For a full explanation and examples, see the
+xargs note, which covers both `*args` and `**kwargs`.

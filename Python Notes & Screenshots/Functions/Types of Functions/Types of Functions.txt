@@ -3,16 +3,21 @@ Types of Functions
 
 Task-Oriented Functions
 -----------------------
-Designed to perform an action (like print()). They return None by default
-unless they explicitly return a value. Calling `print()` displays text but
-itself returns `None`.
+Designed to perform an action, such as displaying a message. The built-in
+`print(value)` function displays a value in the terminal; use it when you want
+to show information to a person running the program. It returns `None`, which
+means it does not give back a useful result for later calculations. A
+user-defined function also returns `None` by default unless it explicitly
+returns a value.
 
 Calculation-Oriented Functions
 ------------------------------
-Designed to calculate and return a value using the return statement.
+Designed to calculate and return a value using the `return` statement.
 `return value` ends the current function call and gives that value to the
-caller. Reaching the end of the function, or using bare `return`, gives
-`None`. A function may both perform side effects and return a value.
+caller (the code that called the function). Reaching the end of the function,
+or using bare `return`, gives `None`. A function may also have an effect
+beyond its returned value, such as displaying text; that is called a side
+effect.
 
 Benefit
 -------

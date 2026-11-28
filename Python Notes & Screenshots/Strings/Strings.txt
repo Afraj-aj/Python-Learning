@@ -3,10 +3,10 @@ Strings
 
 Definition
 ----------
-Strings represent sequences of Unicode code points and are written with single
-or double quotes. Triple quotes allow a literal to span lines; `""` is the
-empty string. Strings are immutable, so operations create new strings rather
-than changing the original.
+Strings represent sequences of Unicode code points (numbered values for text
+characters) and are written with single or double quotes. Triple quotes allow
+a literal to span lines; `""` is the empty string. Strings are immutable,
+meaning they cannot be changed in place; operations create new strings.
 
 Example:
     name = "Alice"
@@ -18,9 +18,10 @@ Example:
 
 Length
 ------
-Use the built-in `len(string)` function to get the number of Unicode code
-points. It returns 0 for an empty string; a visible combined character, such
-as some emoji, can contain more than one code point.
+The built-in `len(string)` function counts the Unicode code points in a
+string; use it to check how many code points it contains. It returns 0 for an
+empty string. A visible combined character, such as some emoji, can contain
+more than one code point.
 
 Example:
     message = "Python"

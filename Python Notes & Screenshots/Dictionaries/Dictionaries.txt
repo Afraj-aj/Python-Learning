@@ -1,0 +1,171 @@
+Dictionaries
+============
+
+Scope
+-----
+This note covers the dictionary basics used most often: creating dictionaries,
+looking up, changing, and removing values, checking keys, and looping through
+pairs. It does not cover every dictionary method.
+
+Definition
+----------
+A dictionary (`dict`) stores information as key-value pairs. A key is used to
+look up its associated value, much like looking up a word in a dictionary to
+find its meaning. Use a dictionary when you want to find information by a
+descriptive key instead of by its position in a list.
+A key-value pair is one key linked to one value; for example, `"name"` is the
+key and `"Ada"` is its value.
+
+Example:
+    person = {
+        "name": "Ada",
+        "age": 36,
+        "is_student": False
+    }
+    print(person["name"])  # Ada
+
+Creating Dictionaries
+---------------------
+Use braces with key-value pairs, or use the built-in `dict()` function.
+`dict()` creates an empty dictionary; it can also build one from another
+dictionary, a collection of two-item pairs, or keyword arguments. Keyword
+arguments are values supplied using a name and `=`, such as `name="Ada"`.
+
+Example:
+    empty = {}
+    also_empty = dict()
+    person = {"name": "Ada", "age": 36}
+    from_pairs = dict([("name", "Ada"), ("age", 36)])
+    from_keywords = dict(name="Ada", age=36)
+
+Keys and Values
+---------------
+Keys must be unique and hashable. A hashable value can be used as a key
+because Python can keep its lookup value consistent; common examples are
+strings and integers. Tuples can be keys if all their items are hashable.
+Lists and dictionaries cannot be keys because they can change. Values can be
+any kind of object, including lists or other dictionaries.
+If a key is repeated, its later value replaces the earlier value. Keys that
+compare equal refer to the same entry (for example, `1` and `True`).
+
+Example:
+    settings = {"theme": "light", "theme": "dark"}
+    print(settings)  # {'theme': 'dark'}
+
+    same_key = {1: "number", True: "boolean"}
+    print(same_key)  # {1: 'boolean'}; 1 and True compare equal as keys
+
+    scores = {"math": [90, 95]}
+    # append(value) adds one item to the end of a list; here it changes the
+    # list stored as the dictionary value.
+    scores["math"].append(100)
+    print(scores["math"])  # [90, 95, 100]
+
+    # This raises TypeError because a list cannot be a dictionary key:
+    # invalid = {[1, 2]: "value"}
+
+Accessing Values
+----------------
+Use `dictionary[key]` to get a value. If the key is absent, this raises
+`KeyError`. Use `get(key)` when a missing key should return `None` instead;
+`get(key, default)` returns the supplied default when the key is absent.
+`get()` does not add a missing key to the dictionary.
+
+Example:
+    person = {"name": "Ada", "age": 36}
+    print(person["name"])  # Ada
+    # person["city"]  # KeyError: "city" is not present
+    print(person.get("city"))  # None; dictionary is unchanged
+    print(person.get("city", "Unknown"))  # Unknown
+
+Adding and Updating
+-------------------
+Assigning to a new key adds a pair. Assigning to an existing key replaces its
+value. `update()` adds pairs from another dictionary or a collection of pairs; it
+can also take keyword arguments. Existing keys are overwritten, and the
+method changes the dictionary in place and returns `None`. Each pair must
+contain exactly two values; invalid pair data raises `TypeError` or
+`ValueError`.
+
+Example:
+    person = {"name": "Ada"}
+    person["age"] = 36
+    person["name"] = "Ada Lovelace"
+    person.update({"city": "London"})
+    person.update(country="UK")
+    print(person)
+    # {'name': 'Ada Lovelace', 'age': 36, 'city': 'London', 'country': 'UK'}
+
+Removing Pairs
+--------------
+`del dictionary[key]` removes a pair and raises `KeyError` if the key is
+missing. `pop(key)` removes and returns the value; it raises `KeyError` when
+the key is absent. `pop(key, default)` returns the default instead when the
+key is absent. `clear()` removes every pair and returns `None`.
+
+Example:
+    person = {"name": "Ada", "age": 36}
+    age = person.pop("age")
+    print(age)  # 36
+    print(person.pop("city", "Unknown"))  # Unknown; no pair was added
+    del person["name"]
+    person.clear()
+    print(person)  # {}
+
+Checking and Iterating
+----------------------
+`in` and `not in` check keys, not values. Iterating over a dictionary visits
+its keys. `keys()`, `values()`, and `items()` provide iterable views of the
+keys, values, and key-value pairs; these views reflect later changes to the
+dictionary, like a live window onto the dictionary's contents.
+`len(dictionary)` returns its number of pairs.
+
+Example:
+    person = {"name": "Ada", "age": 36}
+    print("name" in person)  # True
+    print("Ada" in person)   # False; "Ada" is a value, not a key
+    print(len(person))       # 2
+
+    for key in person:
+        print(key)
+    # Output: name, then age
+
+    for value in person.values():
+        print(value)
+    # Output: Ada, then 36
+
+    for key, value in person.items():
+        print(f"{key}: {value}")
+    # Output: name: Ada, then age: 36
+
+    key_view = person.keys()
+    person["city"] = "London"
+    print("city" in key_view)  # True; the view reflects this later change
+
+Dictionary order
+----------------
+Dictionaries preserve the order in which keys are first inserted (guaranteed
+by the Python language from Python 3.7 onward). Updating an existing key does
+not move it; deleting a key and adding it again places it at the end.
+
+Example:
+    colors = {"first": "red", "second": "blue"}
+    colors["first"] = "green"  # Updating does not move "first"
+    colors["third"] = "yellow"
+    for key in colors:
+        print(key)
+    # Output: first, then second, then third
+
+Mutability and copying
+----------------------
+Dictionaries are mutable: adding, changing, or removing pairs changes the
+same dictionary object. `copy()` makes a shallow copy: it creates a separate
+outer dictionary, but nested mutable values are still shared.
+
+Example:
+    original = {"scores": [10, 20]}
+    copied = original.copy()
+    copied["new_key"] = "separate pair"
+    copied["scores"].append(30)
+    print("new_key" in original)  # False
+    print(original["scores"])     # [10, 20, 30]; nested list is shared

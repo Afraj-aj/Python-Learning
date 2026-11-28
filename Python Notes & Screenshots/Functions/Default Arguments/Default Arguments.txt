@@ -3,8 +3,10 @@ Default Arguments
 
 Purpose
 -------
-Makes parameters optional by providing a default value in the definition
-(e.g., def increment(number, by=1))
+An optional parameter is one the caller can leave out. A default argument
+sets the value that parameter uses when it is omitted, which is useful when
+one value is the common choice (for example, adding 1 by default).
+For example, `def increment(number, by=1)` makes `by` optional.
 
 Behavior
 --------
@@ -15,7 +17,8 @@ function is defined, not on every call.
 Rule
 ----
 For ordinary positional parameters, parameters with defaults must come after
-parameters without defaults. Keyword-only parameters follow different rules.
+parameters without defaults. A keyword-only parameter must be supplied by
+name in the call; see the Keyword Arguments note for that form.
 
 Example:
     # Default value for 'by'
@@ -40,9 +43,10 @@ Example:
 
 Mutable defaults
 ----------------
-Avoid using a mutable object such as a list as a default value: the same
-object is reused across calls. Use `None` and create a fresh object inside
-the function when each call needs its own value.
+A mutable object is one that can be changed after it is created; lists are an
+example. Avoid using one as a default value because the same object is reused
+across calls. Use `None` and create a fresh object inside the function when
+each call needs its own value.
 
 Example:
     def add_item(item, items=None):

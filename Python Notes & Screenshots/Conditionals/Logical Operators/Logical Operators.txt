@@ -4,6 +4,8 @@ Logical Operators
 Purpose
 -------
 Used to combine multiple Boolean expressions to model complex decision logic.
+Boolean means a value of `True` or `False`; logical operators can also return
+one of their input values, as shown below.
 
 Operators
 ---------

@@ -3,25 +3,42 @@ Arguments
 
 Parameters
 ----------
-The input variables defined in the function's parentheses (e.g.,
-first_name, last_name).
+Parameters are the named inputs listed in a function definition's
+parentheses. They let a function receive information to use when it runs.
 
 Arguments
 ---------
-The actual values passed to the function when it is called (e.g., "Mosh",
-"Hamedani").
+Arguments are the actual values supplied when calling a function. For example,
+the strings in `print_name("Mosh", "Hamedani")` are arguments that fill the
+`first_name` and `last_name` parameters.
 
 Rules
 -----
-Parameters are required unless a default value is provided. In a basic
-function definition, parameters can be passed positionally in definition
-order, or by keyword; see the Keyword Arguments note for keyword calls.
+Parameters are required unless a default value is provided. A positional
+argument is matched by its place in the call; a keyword argument is matched by
+its parameter name. In a basic function definition, either form can be used;
+see the Keyword Arguments note for examples.
 This note covers ordinary parameters. `/`, `*`, `*args`, and `**kwargs` can
 further restrict or expand argument forms; see the related notes.
 Missing required arguments, too many positional arguments, or supplying one
 parameter more than once raises `TypeError`.
 
+Signature notation
+------------------
+In a function definition, `/` marks the parameters before it as positional-only:
+give their values in order, without writing the parameter names. The slash is
+documentation/code-definition notation, not something typed in a function
+call. In `def show(*values, label)`, `*` marks `label` as keyword-only, so it
+must be supplied by name.
+
 Example:
+    def show(name, /, *, greeting):
+        print(f"{greeting}, {name}")
+
+    show("Ada", greeting="Hello")  # Valid call: do not type the slash or star
+    # show(name="Ada", greeting="Hello")  # TypeError: name is positional-only
+    # show("Ada", "Hello")  # TypeError: greeting is keyword-only
+
     def print_name(first_name, last_name):
         print(f"First name: {first_name}")
         print(f"Last name: {last_name}")

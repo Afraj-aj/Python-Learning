@@ -3,8 +3,8 @@ Comparison Operators
 
 Purpose
 -------
-For the built-in types covered here, comparison operators produce `True` or
-`False`. Values must support the requested comparison; ordering values of
+For the built-in types covered here, comparison operators check values and
+produce `True` or `False`. Values must support the requested comparison; ordering values of
 incompatible types (such as an integer and a string) raises `TypeError`.
 
 Operators
@@ -47,9 +47,9 @@ Example:
 
 String Comparison
 -----------------
-Strings are compared lexicographically by Unicode code point, and comparisons
-are case-sensitive. If one string is a prefix of another, the shorter string
-comes first.
+Strings are compared one character at a time using each character's Unicode
+code point (its assigned number). Comparisons are case-sensitive. If one
+string is a prefix of another, the shorter string comes first.
 
 Example:
     "apple" < "banana"   # True

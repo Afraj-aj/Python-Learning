@@ -6,10 +6,10 @@ Numeric Types
 Python supports three main numeric types:
     Integers:       Exact whole numbers (e.g., 10); Python integers have
                     arbitrary precision, limited by available memory.
-    Floats:         Approximate real numbers (e.g., 4.99); many decimal
-                    fractions cannot be represented exactly in binary.
-    Complex Numbers: Numbers in the format a + bj, where b is the imaginary
-                    component.
+    Floats:         Approximate numbers with a fractional part (e.g., 4.99);
+                    many decimal fractions cannot be represented exactly.
+    Complex Numbers: Numbers in the format a + bj, where j represents the
+                     square root of -1 and b is the imaginary component.
 Complex numbers support arithmetic but not ordering comparisons such as `<`.
 The remainder `%` has the sign of its divisor. Built-in `round()` uses
 round-half-to-even for exact halfway cases; see its examples below.
@@ -54,8 +54,9 @@ Example:
     -10 % 3   # 2 (remainder has the divisor's sign)
 
 Division, floor division, and modulo by zero raise `ZeroDivisionError`.
-Floating-point results may have small rounding differences; use a tolerance
-when comparing calculated floats for equality.
+Floating-point results may have small rounding differences; when comparing
+them, a tolerance (a small allowed difference) is often safer than exact
+equality.
 
 Additional Operators
 --------------------
@@ -96,8 +97,15 @@ Working With Numbers
 Built-in Functions:
     round(number, ndigits=None): Rounds to the nearest multiple of
                                  10 ** -ndigits; ndigits is optional.
-    abs(number, /): Returns the non-negative magnitude; complex input returns
-                    its magnitude as a float. The argument is positional-only.
+    abs(number): Returns the non-negative magnitude; complex input returns
+                 its magnitude as a float.
+
+Use `round()` when a rounded value is needed for display or a calculation.
+Use `abs()` when you need the size of a difference without its sign.
+`round(number, ndigits=None)` leaves `ndigits` optional: omit it to round to
+an integer, or use a negative value to round to tens, hundreds, and so on.
+`abs(number)` returns the distance from zero; complex input returns its
+magnitude as a float.
 
 Example:
     round(3.7)     # 4
@@ -108,12 +116,16 @@ Example:
     abs(5)         # 5
     abs(3 + 4j)    # 5.0 (complex magnitude)
 
-When a value is exactly halfway between two integers, 'round()' uses
-round-half-to-even (for example, 'round(2.5)' is `2` and 'round(3.5)' is `4`).
+When a value is exactly halfway between two integers, `round()` uses
+round-half-to-even (for example, `round(2.5)` is `2` and `round(3.5)` is `4`).
 For built-in `int` and `float` values, `round(number)` returns an integer;
 with `ndigits` supplied, it returns the same type as `number`. `round()` does
-not support complex numbers. Rounding a float does not make its underlying
-binary representation exact.
+not support complex numbers. Rounding a float does not change how its value
+is represented internally, so some decimal fractions remain approximate.
+
+`math.isnan(value)` checks whether a value is the special floating-point
+value NaN, meaning "not a number." Use this check because NaN does not compare
+equal to itself.
 
 Example:
     import math
@@ -126,13 +138,17 @@ Example:
 
 Math Module
 -----------
-For more complex calculations, import the math module.
-Use dot notation to access functions and constants (e.g., 'math.ceil()' and
-`math.pi`) after importing the module.
+The `math` module is a collection of functions and constants for common
+mathematical calculations. Import it before using its contents.
+Use dot notation to access functions and constants (e.g., `math.ceil()` and
+`math.pi`) after importing the module. `math.ceil(x)` rounds up to an integer,
+`math.floor(x)` rounds down, and `math.sqrt(x)` calculates a square root.
+Use them when a calculation calls for those specific operations.
 `math.ceil()` and `math.floor()` return integers. `math.sqrt()` accepts
-non-negative real values; a negative input raises `ValueError`. Use `cmath`
-for complex square roots. The functions shown here take their arguments
-positionally.
+non-negative real values; a negative input raises `ValueError`. Use
+`cmath.sqrt()` for square roots of negative or other complex values; `cmath`
+is the module for complex-number math. The functions shown here take their
+arguments in order inside the parentheses.
 
 Example:
     import math
@@ -141,3 +157,6 @@ Example:
     math.floor(3.8)    # 3 (round down)
     math.sqrt(16)      # 4.0
     math.pi            # 3.14159...
+
+    import cmath
+    cmath.sqrt(-1)     # 1j (complex square root)

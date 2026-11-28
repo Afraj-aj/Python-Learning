@@ -27,8 +27,9 @@ is entered.
 
 Best Practice
 -------------
-Use methods like .lower() on strings before comparison to ensure the condition
-is case-insensitive.
+The string method `lower()` returns a lowercase copy. Use it before comparing
+commands when uppercase and lowercase should be treated the same; it does not
+change the original string.
 An optional `else` runs when the loop ends without `break`, including when the
 condition was false initially. `continue` does not suppress it.
 
@@ -43,6 +44,7 @@ Example:
     # User input loop
     while True:
         user_input = input("Enter a command (quit to exit): ")
+        # lower() makes "QUIT" and "quit" compare the same
         if user_input.lower() == "quit":
             print("Goodbye!")
             break

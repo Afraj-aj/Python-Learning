@@ -11,8 +11,9 @@ Python has a defined operator-precedence order. For arithmetic, exponentiation
 is evaluated before multiplication, division, floor division, and modulo;
 these are evaluated before addition and subtraction. Operators at the same level
 generally evaluate left to right, except exponentiation, which groups right to
-left. Unary `+` and `-` bind less tightly than exponentiation on their right,
-so `-2 ** 2` means `-(2 ** 2)`. Comparisons are evaluated before `not`, then
+left. A unary operator acts on one value. Unary `+` and `-` bind less tightly
+than exponentiation on their right, so `-2 ** 2` means `-(2 ** 2)`.
+Comparisons are evaluated before `not`, then
 `and`, then `or`. Use parentheses to make the intended order clear or to
 override precedence.
 This note focuses on arithmetic and Boolean-expression precedence; Python also

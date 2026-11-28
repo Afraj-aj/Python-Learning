@@ -22,28 +22,42 @@ Example with input:
     age = int(age)                    # Convert to integer first
     print(age + 5)                    # 30
 
+The built-in `type(value)` function tells you the value's type (what kind of
+value it is). Use it when you are unsure what a value returned by a function
+or conversion represents.
+
+Example:
+    type(25)       # <class 'int'>
+    type("25")     # <class 'str'>
+
 Built-in Conversion Functions
 -----------------------------
-    int(number=0, /):      Converts a numeric value to an integer.
-    int(string, /, base=10): Parses integer text using the optional base.
-    float(x=0.0, /):       Converts a number or valid numeric text to a float.
-    bool(x=False, /):      Returns the truth value of x.
-    str(object='', /):     Returns a readable string representation of object.
-    str(bytes_like, encoding, errors='strict'): Decodes bytes using the codec;
-                                                encoding is required.
+`int(value)` converts a whole-number value or numeric text into an integer;
+use it to do integer arithmetic with text received from `input()`.
+`float(value)` converts a number or valid decimal text into a floating-point
+number, useful when calculations need fractional values.
+`bool(value)` gives the truth value Python assigns to a value, useful in an
+`if` condition. `str(value)` makes a text representation for display or
+joining a value with other text.
 
-`int()` accepts an optional base only when converting text; bases are from 2
-through 36, and base 0 recognizes prefixes such as `0b`. Its first argument
-is positional-only, while `base` may be positional or a keyword. A float
-converted to int is truncated toward zero, not rounded. `float()` accepts
-decimal text and valid exponent notation.
+Example:
+    int("25")       # 25
+    float("2.5")    # 2.5
+    bool("")        # False
+    str(25)         # "25"
+
+`int(text, base=10)` can parse text written in a number base from 2 through
+36; base 0 recognizes prefixes such as `0b`. A float converted to int is
+truncated toward zero, not rounded. `float()` accepts decimal text and valid
+exponent notation.
 Invalid numeric text raises `ValueError`; unsupported types raise `TypeError`.
 An invalid base raises `ValueError`. Converting infinity to `int()` raises
 `OverflowError`; converting NaN to `int()` raises `ValueError`.
-Text forms such as `"inf"` and `"nan"` are valid for `float()`. The first
-argument to `str()` is positional-only. The bytes-like form requires an
-encoding; `encoding` and the optional `errors` argument may be keywords, and
-`errors` selects how decoding problems are handled. The default `"strict"` raises
+Text forms such as `"inf"` and `"nan"` are valid for `float()`. A bytes-like
+value can also be decoded with `str(bytes_value, encoding, errors="strict")`;
+an encoding is required because bytes do not specify which text encoding to
+use. The optional `errors` setting controls how invalid bytes are handled.
+The default `"strict"` raises
 `UnicodeDecodeError` for invalid bytes; `"replace"` substitutes U+FFFD.
 
 Example:
@@ -60,16 +74,18 @@ Example:
     flag = bool(1)            # True
     bool("False")             # True (non-empty strings are truthy)
     text = str(100)           # "100" (string)
+    str(b"hello", "utf-8")    # "hello" (decode bytes using UTF-8)
     str(b"caf\xc3\xa9", encoding="utf-8")  # Decodes bytes to "café"
     str(b"\xff", "utf-8", "replace")  # Replaces invalid byte with U+FFFD
     int()                     # 0; float() is 0.0; bool() is False; str() is ''
-    # int(number=5)           # TypeError: first argument is positional-only
     # int(5, base=2)          # TypeError: base is only allowed with text
     # str(b"\xff", "utf-8")   # UnicodeDecodeError with the default strict mode
 
 `bool(x)` uses truthiness rather than parsing the text as a Boolean: even
-`bool("False")` is `True`. `str(object)` can call an object's `__str__()`
-method; its exact output depends on that object's type.
+`bool("False")` is `True`. Truthiness means how Python treats a value in a
+condition: as true or false. `str(object)` can call an object's `__str__()`
+method (an advanced Python hook for producing display text); its exact output
+depends on the object's type.
 
 Truthiness and Falsiness
 ------------------------
@@ -78,12 +94,11 @@ values include:
     False
     Numeric zero: 0, 0.0, and 0j
     None (representing the absence of a value)
-    Empty strings and collections, such as "", [], (), {}, and set()
+    Empty strings and collections, such as "", [], (), and {}
 
-Other built-in values are truthy. A custom object can define its own truth
-value with `__bool__()` or, when that method is absent, `__len__()`. A custom
-`__bool__()` must return a Boolean or raises `TypeError`; `__len__()` must
-return a non-negative integer or raises `TypeError`/`ValueError`.
+Other built-in values are truthy. Advanced custom objects can also define how
+Python tests their truth value; those special methods are outside this
+beginner-level note.
 
 Example:
     falsy_values = ["", 0, None, [], {}]

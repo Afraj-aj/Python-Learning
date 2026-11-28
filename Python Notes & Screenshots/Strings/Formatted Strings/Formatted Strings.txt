@@ -17,8 +17,10 @@ evaluated at runtime.
 Double braces `{{` and `}}` display literal braces. A replacement field can
 also include a conversion (`!s`, `!r`, or `!a`) and a format specification
 after `:`. The expression is evaluated when the f-string is created. The
-conversion selects `str()`, `repr()`, or `ascii()` output, respectively; the
-format specification is interpreted by the value's type.
+conversion selects `str()`, `repr()`, or `ascii()` output, respectively.
+`str()` makes readable text, `repr()` makes a representation useful for
+debugging, and `ascii()` makes a representation containing only ASCII
+characters. A format specification controls details such as decimal places.
 
 Example:
     name = "Alice"
@@ -57,6 +59,7 @@ Unescaped single braces must form a valid replacement field; unmatched braces
 raise `SyntaxError`. A malformed expression or format specification also
 raises `SyntaxError`; an invalid format specification for a built-in value
 raises `ValueError` or `TypeError` when formatted. Format specifications can
-contain nested replacement fields. This note covers ordinary f-strings; raw
-f-strings have additional backslash rules, and Python does not support
+contain nested replacement fields. This note covers ordinary f-strings. A raw f-string combines f-string
+replacement fields with a raw string's backslash behavior; it is written
+with both `r` and `f` prefixes, such as `rf"..."`. Python does not support
 bytes-formatted strings.

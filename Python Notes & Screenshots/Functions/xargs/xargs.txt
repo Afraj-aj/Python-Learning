@@ -11,10 +11,14 @@ Implementation
 --------------
 Use an asterisk `*` before the parameter name (commonly `*args`, or a
 descriptive name such as `*numbers`).
+Use this when the caller may provide any number of extra positional values,
+such as a calculator that should accept several numbers.
 
 Mechanism
 ---------
-Python packs these arguments into a tuple (an iterable collection).
+Python packs these arguments into a tuple. A tuple is an ordered, fixed
+collection; an iterable is an object that can provide its items one at a time
+in a loop.
 The tuple is empty when no extra positional arguments are supplied. The name
 `args` is only a convention: any valid parameter name can follow `*`.
 
@@ -22,6 +26,8 @@ Usage
 -----
 You can iterate over this tuple (using a for loop) to perform calculations
 like finding a sum or product of an arbitrary number of inputs.
+The built-in `sum(numbers)` adds the values in an iterable and returns their
+total; it is useful when the goal is to add all supplied numbers.
 
 Example:
     def multiply(*numbers):
@@ -43,7 +49,8 @@ Example:
     print(total(10, 20, 30, 40)) # 100
     print(total())              # 0 (sum of an empty tuple)
 
-At a call site, a leading `*` expands an iterable into positional arguments:
+At a call site, a leading `*` unpacks an iterable, passing each of its items
+as a separate positional argument:
 
 Example:
     def multiply(*numbers):
@@ -55,12 +62,97 @@ Example:
     values = [2, 3, 4]
     print(multiply(*values))  # 24
 
-When `*args` appears in a function definition, any parameters after it are
-keyword-only. `**kwargs` separately collects extra keyword arguments and is
-not covered in this note.
+When `*args` appears in a function definition, any parameters after it must
+be supplied by name (keyword-only). `**kwargs` is a separate form that
+collects extra named arguments into a dictionary; it is outside this note's
+main topic.
 
 Example:
     def show_values(*values, label):
         print(label, values)
 
     show_values(1, 2, label="items")  # items (1, 2)
+
+**kwargs
+--------
+`**kwargs` is similar to `*args`, but it collects extra keyword arguments instead
+of extra positional arguments. A keyword argument is written as `name=value`
+in a function call. The name before `=` becomes a string key in a dictionary;
+the value becomes the dictionary's value.
+
+Use `**kwargs` when the caller may provide any number of named options:
+
+Example:
+    def create_profile(name, **details):
+        print("Name:", name)
+        print("Details:", details)
+
+    create_profile("Alice", age=30, city="London")
+    # Name: Alice
+    # Details: {'age': 30, 'city': 'London'}
+
+In this example, `name="Alice"` is matched by the regular `name` parameter.
+`age=30` and `city="London"` have no matching parameters, so Python adds them
+to the `details` dictionary. If no extra keywords are supplied, `details` is
+an empty dictionary: `{}`.
+
+The name `kwargs` means "keyword arguments," but it is only a convention.
+Any valid parameter name can follow `**`, such as `**options`.
+
+*args and **kwargs in one function
+-----------------------------------
+Both forms can be used together. Ordinary parameters, `*args`, and `**kwargs`
+usually appear in this order:
+
+Example:
+    def report(title, *items, **options):
+        print(title)
+        print("Items:", items)
+        print("Options:", options)
+
+    report("Shopping", "milk", "bread", urgent=True, count=2)
+    # Shopping
+    # Items: ('milk', 'bread')
+    # Options: {'urgent': True, 'count': 2}
+
+Here:
+
+- `title` receives `"Shopping"`.
+- `*items` packs `"milk"` and `"bread"` into a tuple.
+- `**options` packs `urgent=True` and `count=2` into a dictionary.
+
+The leading `*` and `**` characters are used in the function definition and
+at the call site for unpacking. Inside the function, access the collected tuple
+as `args`/`items` and the collected dictionary as `kwargs`/`options`.
+
+Call-site unpacking
+-------------------
+A leading `**` at a call site unpacks a dictionary and passes each key-value
+pair as a named argument. The dictionary keys must be strings.
+
+Example:
+    def create_profile(name, age, city):
+        print(name, age, city)
+
+    profile = {"age": 30, "city": "London"}
+    create_profile("Alice", **profile)
+    # Alice 30 London
+
+The keys in `profile` match the parameter names `age` and `city`. Python does
+not type `**` in a normal call such as `create_profile("Alice", age=30)`.
+
+Unknown or duplicate keyword arguments
+-------------------------------------
+Extra named arguments are accepted only when the function has `**kwargs`.
+Without it, an unknown keyword or repeated value for one parameter raises
+`TypeError`.
+
+Example:
+    def greet(name, greeting="Hello"):
+        print(greeting, name)
+
+    greet("Alice", greeting="Hi")  # Valid
+    # Hi Alice
+
+    # greet("Alice", location="London")
+    # TypeError: unexpected keyword argument 'location'

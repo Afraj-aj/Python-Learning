@@ -72,6 +72,7 @@ Current topic folders (check the workspace for the authoritative structure):
 - `Conditionals/`
 - `Loops/`
 - `Lists/`
+- `Dictionaries/`
 - `Tuples/`
 - `Functions/`
 
@@ -228,6 +229,8 @@ Python Notes & Screenshots/
 │   ├── Lists.txt
 │   └── List Methods/
 │       └── List Methods.txt
+├── Dictionaries/
+│   └── Dictionaries.txt
 ├── Tuples/
 │   └── Tuples.txt
 ├── Functions/
@@ -291,6 +294,15 @@ Example:
 ## Rule 10: Complete Concept Coverage
 For every function, method, operator, or language feature explained in a note:
 
+- When a function or method is introduced or mentioned for the first time,
+  define it in beginner-friendly language: what it does, why or when it is
+  useful, and a simple example of how to use it.
+- Define new technical terms and concepts before relying on them. For example,
+  explain that a dictionary is a collection that stores values under keys,
+  then show a small example and when that structure is useful.
+- Explain signature notation that may be unfamiliar (such as `/` for
+  positional-only parameters) in plain language. Make clear which parts are
+  documentation notation and which parts are actually typed in a call.
 - Cover its documented forms, parameters/options, defaults, and return value or result.
 - Explain relevant side effects, mutability, boundary behavior, and common errors.
 - Include examples for each meaningfully different form or behavior, including

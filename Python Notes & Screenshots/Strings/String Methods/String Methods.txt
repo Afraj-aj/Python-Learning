@@ -3,14 +3,17 @@ String Methods
 
 Scope
 -----
-This note explains selected common methods rather than the entire `str` API.
+This note explains selected common methods for Python's `str` (string) type,
+rather than every string method available in Python.
 Each listed method follows Python's case-sensitive string behavior and returns
 a new string when it transforms text; strings themselves are immutable.
+Immutable means the original string cannot be changed in place; a method
+returns a new string value instead.
 
 Object-Oriented Basics
 ----------------------
-In Python, strings are objects, meaning they have associated functions called
-methods that are accessed using the dot notation (e.g., course.upper()).
+In Python, a string is an object (a value in a program). A method is a
+function attached to an object and called with a dot, as in `course.upper()`.
 
 Example:
     course = "python"
@@ -18,10 +21,12 @@ Example:
 
 Case Manipulation Methods
 -------------------------
-    upper():    Returns an uppercase copy; takes no arguments.
-    lower():    Returns a lowercase copy; takes no arguments.
-    title():    Returns a title-cased copy; takes no arguments. Its treatment
-                of apostrophes may not match human names.
+    upper():    Returns an uppercase copy; useful for displaying or comparing
+                text without lowercase letters.
+    lower():    Returns a lowercase copy; useful for case-insensitive
+                comparisons.
+    title():    Returns a title-cased copy; useful for simple headings. Its
+                treatment of apostrophes may not match human names.
 
 Example:
     text = "hello world"
@@ -32,15 +37,16 @@ Example:
 
 Whitespace Management
 ---------------------
-    strip(chars=None, /):  Removes leading/trailing whitespace, or any of the
-                           characters in chars when supplied.
-    lstrip(chars=None, /): Removes from the left only.
-    rstrip(chars=None, /): Removes from the right only.
+    strip(chars=None):  Removes leading/trailing whitespace, or any of the
+                        characters in chars when supplied.
+    lstrip(chars=None): Removes from the left only.
+    rstrip(chars=None): Removes from the right only.
 
 When `chars` is supplied, it is treated as a set of characters to remove from
 the edges, not as one exact prefix or suffix. With no argument, whitespace is
 removed. These methods return a new string; if there is nothing to remove, the
-returned string has the same contents as the original.
+returned string has the same contents as the original. Use them to clean
+spaces or selected characters from user-entered text.
 
 Example:
     messy = "   hello   "
@@ -50,16 +56,17 @@ Example:
 
 Searching and Replacing
 -----------------------
-    find(sub, start=0, end=len(string), /): Returns the first index in the
-                                            optional search range, or -1.
-    replace(old, new, count=-1, /): Returns a copy with up to count
-                                    occurrences replaced; default replaces all.
+    find(sub, start=0, end=len(string)): Returns the first index in the
+                                         optional search range, or -1.
+    replace(old, new, count=-1): Returns a copy with up to count occurrences
+                                 replaced; default replaces all.
 
 `find()` returns -1 when no match exists; its optional start and end bounds use
 the same clipping rules as string slices. `replace()` with `count=0` makes no
 replacements, while a negative count means replace all. Supplying the wrong
-argument type raises `TypeError`. The `/` marks positional-only parameters;
-these methods do not accept keyword arguments.
+argument type raises `TypeError`. Pass arguments in order as shown; for
+example, use `sentence.find("like", 3)`, not `sentence.find("like", start=3)`.
+Use `find()` to locate text and `replace()` to make a changed copy.
 
 Example:
     sentence = "I like apples"

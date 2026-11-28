@@ -30,6 +30,7 @@ Example:
 
     # Practical example
     username = ""
+    # startswith(prefix) returns True if the string begins with that prefix.
     if username and username.startswith("admin"):
         print("Admin user")
 

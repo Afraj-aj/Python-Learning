@@ -8,14 +8,16 @@ on Boolean conditions.
 
 Structure
 ---------
-Uses `if`, zero or more `elif` clauses, and an optional `else` clause. Python
-tests the conditions in order and runs only the first matching block.
+Uses `if`, zero or more `elif` ("else if") clauses, and an optional `else`
+clause. Python tests the conditions in order and runs only the first matching
+block.
 
 Syntax Rules
 ------------
-Conditions are tested for truthiness. Comparisons produce Booleans, but other
-values can also be used (for example, an empty string is false and a non-empty
-string is true).
+Conditions are tested for truthiness, meaning Python treats a value as either
+true or false in an `if` statement. Comparisons produce Booleans, but other
+values can also be used (for example, an empty string is treated as false and
+a non-empty string as true).
 Use a colon (:) after the condition.
 Indentation is mandatory and must be consistent to define the code blocks
 belonging to each statement.

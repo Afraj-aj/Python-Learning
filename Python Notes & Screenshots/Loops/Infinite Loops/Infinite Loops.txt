@@ -8,9 +8,10 @@ the program exits it with control flow or an external interruption.
 
 Exit Strategy
 -------------
-An intentional infinite loop can be stopped with `break`, `return`, an
-exception, or an external interruption such as Ctrl+C. A condition that
-eventually becomes false is another common way to end a loop.
+An intentional infinite loop can be stopped with `break` (exit the loop),
+`return` (leave the current function), an exception (an error that interrupts
+normal execution), or an external interruption such as Ctrl+C. A condition
+that eventually becomes false is another common way to end a loop.
 
 Risk
 ----

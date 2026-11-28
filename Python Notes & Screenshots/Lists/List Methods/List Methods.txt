@@ -6,35 +6,43 @@ Overview
 This note covers the standard list methods and the `len()` built-in. Methods
 that change a list modify it in place; unless noted otherwise, they return
 `None`. List indexes and slice bounds follow the rules in `Lists.txt`.
+Use list methods when you want to add, remove, find, count, sort, or copy list
+items without writing that operation from scratch. "In place" means the
+existing list itself changes. The examples below show how to use each method.
 
 Common Methods
 --------------
-    append(item, /): Adds one item to the end; it does not unpack iterables.
-    extend(iterable, /): Adds each item from an iterable.
-    insert(index, item, /): Inserts before the given position. Negative indexes
+    append(item): Adds one item to the end; it does not unpack iterables.
+    extend(iterable): Adds each item from an iterable.
+    insert(index, item): Inserts before the given position. Negative indexes
                          count from the end; out-of-range indexes are clamped.
-    remove(value, /): Removes the first equal item; raises ValueError if absent.
-    pop(index=-1, /): Removes and returns an item; defaults to the last item.
+    remove(value): Removes the first equal item; raises ValueError if absent.
+    pop(index=-1): Removes and returns an item; defaults to the last item.
     clear(): Removes all items.
-    index(value, start=0, stop=..., /): Returns the first matching index;
-                                        optional bounds limit the search.
-    count(value, /): Returns the number of equal items.
-    sort(*, key=None, reverse=False): Sorts in place; returns None.
+    index(value, optional_start, optional_stop): Finds the first matching
+                                                 position in optional bounds.
+    count(value): Returns the number of equal items.
+    sort(key=None, reverse=False): Sorts in place; returns None.
     reverse(): Reverses the list in place; returns None.
     copy(): Returns a shallow copy.
-    len(items, /): Built-in function that returns the number of items.
+    len(items): Built-in function that returns the number of items.
 
 `pop()` on an empty list, or with an invalid index, raises `IndexError`.
 `index()` raises `ValueError` if the item is absent; `remove()` does the same.
-Indexes and optional search bounds must be integers (or integer-like values).
-The `/` marks positional-only parameters; `sort()` alone accepts keyword-only
-options (`key` and `reverse`). `index()`'s start and stop bounds follow slice
-rules, including negative indexes and an excluded stop.
-`sort()` requires mutually orderable items unless a suitable `key` is
-provided; it is stable and accepts keyword-only `key` and `reverse` arguments.
-The key must be callable; incompatible items or a failing key function raise
-an exception.
-`copy()` and slicing are shallow: nested objects remain shared.
+Indexes and optional search bounds must be integers (or values Python can use
+as integer indexes).
+Pass method arguments in the listed order, as in `numbers.pop(0)`.
+`sort()` accepts optional named settings `key` and `reverse`; `key` tells it
+what value to sort by, and `reverse=True` sorts descending. `index()`'s
+optional start and stop bounds follow slice rules, including negative
+indexes and an excluded stop. If omitted, the search starts at the beginning
+and continues to the end of the list.
+`sort()` keeps equal-key items in their original order. Its optional `key`
+setting is a function that returns what to compare for each item; `reverse`
+chooses descending order. Values that cannot be compared raise `TypeError`
+unless a suitable `key` function is supplied.
+`copy()` and slicing make shallow copies: nested objects remain shared.
+`len(items)` counts the items and is useful when you need the list's size.
 
 Example:
     numbers = [1, 2, 3]
@@ -77,7 +85,7 @@ Example:
     print(values.count(2))       # 2
     print(values.index(2, 1))    # 2
     print(values.index(2, -3, -1))  # 2 (negative start; stop is excluded)
-    # values.index(2, start=1)   # TypeError: list.index() takes no keyword arguments
+    # values.index(2, start=1)   # TypeError: pass index arguments in order
     # values.index(9)            # ValueError: value is not present
 
     # sort can accept key and reverse keyword arguments

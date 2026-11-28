@@ -5,9 +5,12 @@ Overview
 --------
 Functions are used to break large programs into smaller, maintainable, and
 reusable chunks of code.
+A function is a named, reusable block of code: define it once, then call it
+whenever you need that task. `print()` is a built-in function that displays
+values in the terminal, which is useful for showing a message or a result.
 This is an overview. See the topic notes for parameter forms, defaults,
-variadic positional arguments, and the difference between printing and
-returning a value.
+ways to accept a flexible number of inputs, and the difference between
+printing and returning a value.
 
 Topics in this folder:
 - Defining Functions

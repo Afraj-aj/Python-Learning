@@ -3,20 +3,23 @@ Iterables
 
 Concept
 -------
-An object that can provide its elements one by one, allowing it to be used in
-a for loop. Lists, tuples, strings, and range objects are common iterables.
-An iterator is the object that supplies items on successive requests; an
-iterable can create an iterator. A `for` loop handles this process and stops
-normally when the iterator is exhausted.
-`iter(iterable, /)` requests an iterator. Python also supports
-`iter(callable, sentinel, /)`, which calls the zero-argument callable until
-its result equals the sentinel. `next(iterator[, default], /)` returns the next item; without the optional
-default it raises `StopIteration` when exhausted, and with a default it
-returns that value instead. Square brackets here mark an optional argument.
-These arguments are positional-only.
+An iterable is an object that can provide its elements one by one, allowing
+it to be used in a `for` loop. Lists, tuples, strings, and range objects are
+common iterables.
+An iterator is the object that remembers where it is and supplies the next
+item when asked; an iterable can create an iterator. A `for` loop handles
+these requests and stops normally when no items remain.
+`iter(iterable)` asks an iterable for an iterator. Python also supports
+`iter(callable, sentinel)`, which repeatedly calls a zero-argument function
+until its result equals the sentinel (the stop value).
+`next(iterator)` requests the next item; if no items remain, it raises
+`StopIteration`. `next(iterator, default)` instead returns the supplied
+default value when no items remain.
 Passing a non-iterable to `iter()` or a non-iterator to `next()` raises
-`TypeError`. The callable-sentinel form continues until the sentinel is
-returned; if it never is, iteration does not finish.
+`TypeError`. The callable-sentinel form continues until the sentinel is returned; if it
+never is, iteration does not finish.
+Use `iter()` to get an iterator explicitly and `next()` to request one item;
+most beginners can let a `for` loop do both automatically.
 
 Examples
 --------

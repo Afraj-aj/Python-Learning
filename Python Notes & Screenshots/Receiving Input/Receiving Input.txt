@@ -7,10 +7,12 @@ Used to read data from the terminal (user input) while a program is running.
 
 Syntax
 ------
-`input(prompt='', /)` reads one line from standard input. The optional prompt
-defaults to an empty string, is positional-only, and is written without a
-trailing newline. The returned string does not include the line-ending
-newline. If input reaches end-of-file, `input()` raises `EOFError`.
+`input(prompt='')` is a built-in function that pauses the program and reads a
+line typed by the user. It is useful for interactive programs. The optional
+prompt defaults to an empty string and is displayed without a trailing
+newline. The returned string does not include the line-ending newline. If
+input reaches end-of-file, `input()` raises `EOFError`.
+For example, `input("Name: ")` displays a prompt before waiting for a name.
 
 Example:
     name = input("Enter your name: ")
@@ -21,7 +23,11 @@ Example:
 
 Return Type
 -----------
-The input() function always returns a string, even if the user types a number.
+The `input()` function always returns a string, even if the user types a
+number. `int(text)` converts suitable text to a whole-number value and
+`float(text)` converts suitable text to a decimal-number value. Use a
+conversion before doing arithmetic with entered numbers; invalid text causes
+`ValueError`.
 
 Example:
     age = input("Enter your age: ")
@@ -31,9 +37,9 @@ Example:
     age = int(input("Enter your age: "))
     print(age + 1)     # Works after conversion
 
-If the entered text is not a valid integer, `int()` raises a `ValueError`.
-The same applies when converting invalid text with `float()`. Handle the
-exception if the program should prompt again instead of stopping.
+If the entered text is not a valid integer or decimal number, the conversion
+raises a `ValueError`. Handle the error if the program should prompt again
+instead of stopping.
 
 Example:
     try:

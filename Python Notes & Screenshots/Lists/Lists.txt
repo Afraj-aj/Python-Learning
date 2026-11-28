@@ -3,10 +3,12 @@ Lists
 
 Definition
 ----------
-Lists are ordered, mutable collections. A list literal uses square brackets;
-`list()` creates an empty list and `list(iterable, /)` makes a list from an
-iterable. The iterable argument is positional-only. Lists can contain mixed
-types and can contain other lists.
+Lists are ordered collections that can be changed after they are created
+(mutable). A list literal uses square brackets;
+`list()` creates an empty list and `list(iterable)` makes a list from an
+iterable (an object that supplies items one by one). Pass the iterable inside
+the parentheses, not as a named argument. Lists can contain mixed types and
+can contain other lists.
 Passing a non-iterable object to `list()` raises `TypeError`.
 
 Example:
@@ -20,8 +22,9 @@ Example:
 Accessing Elements
 ------------------
 Access elements via index (starts at 0; negative index accesses from the end).
-Indexes must be integers (or integer-like values); a non-integer index raises
-`TypeError`, while an integer outside the valid range raises `IndexError`.
+Indexes must be integers (or values Python can use as integer indexes); a
+non-integer index raises `TypeError`, while an integer outside the valid
+range raises `IndexError`.
 
 Example:
     fruits = ["apple", "banana", "cherry"]
@@ -46,8 +49,8 @@ Use `list[start:stop:step]` to return a shallow copy containing selected
 items; `stop` is excluded and `step` defaults to 1. Bounds may be omitted and
 may be negative. A negative step traverses backward. Out-of-range slice
 bounds are clipped. Indexes and steps must be integers (or integer-like
-values); a step of zero raises `ValueError`, and non-integer values raise
-`TypeError`.
+values Python can use as indexes); a step of zero raises `ValueError`, and
+other non-integer values raise `TypeError`.
 
 Example:
     numbers = [10, 20, 30, 40, 50]
@@ -65,8 +68,10 @@ Example:
     # numbers[::0]  # ValueError: slice step cannot be zero
     # numbers[1.5:3]  # TypeError: slice indexes must be integers
 
-Because slicing is shallow, the outer list is new but nested mutable items
-are still shared. Assigning a slice can replace or delete a range of items.
+Because slicing is a shallow copy, the outer list is new but nested mutable
+items are still shared. A shallow copy duplicates only the outside container,
+not the objects stored inside it. Assigning a slice can replace or delete a
+range of items.
 Extended slice assignment (a slice with a step other than 1) must replace the
 same number of items as it selects; otherwise Python raises `ValueError`.
 

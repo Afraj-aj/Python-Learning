@@ -5,11 +5,11 @@ Definition
 ----------
 Similar to lists, tuples are ordered collections. The comma creates a tuple;
 parentheses are commonly used to group its items. `()` is the empty tuple;
-`tuple(iterable, /)` makes a tuple from an iterable. The iterable argument is
-positional-only; a non-iterable argument raises `TypeError`.
-Tuples are ordered and immutable: their element references cannot be changed,
-added, or removed after creation. An object stored inside a tuple may itself
-be mutable.
+`tuple(iterable)` makes a tuple from an iterable (an object that supplies
+items one by one). A non-iterable argument raises `TypeError`.
+Tuples are ordered and immutable: after creation, items cannot be replaced,
+added, or removed. An object stored inside a tuple may itself be mutable and
+change internally.
 
 Use Case
 --------
@@ -64,9 +64,8 @@ Example:
     values[0].append(3)
     print(values)  # ([1, 2, 3],)
 
-    # count(value, /) returns a count; index(value, start=0, stop=..., /) finds
-    # the first match in the optional bounds and raises ValueError if absent.
-    # These tuple methods accept positional arguments only.
+    # count(value) tells how many matches exist; index(value, start, stop)
+    # finds the first matching position in an optional search range.
     nums = (1, 2, 2, 3)
     nums.count(2)    # 2
     nums.index(3)    # 3

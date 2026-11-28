@@ -14,7 +14,9 @@ Syntax
     many Unicode letters in identifiers. Names are case-sensitive and cannot
     be Python keywords.
 
-Assignment binds or rebinds a name to an object; it does not copy the object.
+Assignment binds a name to an object, meaning it makes the name refer to that
+object. Reassignment changes what the name refers to; it does not copy the
+object.
 Assigning a new value does not change other names that referred to the old
 object. Mutable objects can still be changed through any name that refers to
 them.
@@ -29,6 +31,7 @@ Example:
     width, height = 10, 20
     # Chained assignment binds both names to the same object
     first = second = []
+    # append(item) adds one item to the end of a list.
     first.append("shared")
     print(second)  # ['shared']; both names refer to the same list
 
